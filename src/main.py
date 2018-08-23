@@ -1,11 +1,11 @@
 
-import lexer
 import parser
+import lexer
 
 
 def main():
     #Head the currente flow source code in test.lang and store it in varible
-    with open('/home/nickotronz7/Documents/LightBotLang/src/test.lang') as file:
+    with open('test.lang') as file:
         content = file.read()
 
         #
