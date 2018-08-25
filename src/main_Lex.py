@@ -6,44 +6,17 @@ import sys
 
 import ply.lex as lex
 
-tokens = ['NUM', 'ESPECIAL', 'CHAR', 'ID', 'COMMENT', 'EOL', 
+reservadas = ['Proc', 'PrEnd', 'Begin', 'End', 'Var', 'Set', 'Add', 'Less',
+    'Left', 'Right', 'Back', 'Same', 'ChangeDir', 'Place', 'Block', 'High', 
+    'Put','Light', 'Pos', 'Keep', 'Kend', 'Skip', 'For', 'Times', 'Fend',
+    'When', 'Whend', 'PosStart', 'Call'
+]
+
+tokens = reservadas + ['NUM', 'ESPECIAL', 'CHAR', 'ID', 'COMMENT', 'EOL', 
     'ASSING', 'SUM', 'RES', 'LPAR', 'RPAR', 'LBRA', 'RBRA',
     'COMMA', 'SEMICOLON', 'QUOTE', 'LCBRA', 'RCBRA', 'WHITESPACE', 'RESERVED'
 ]
 
-reservadas = {
-    'Proc'      : 'PROC',
-    'PrEnd'     : 'PREND',
-    'Begin'     : 'BEGIN',
-    'End'       : 'END',
-    'Var'       : 'VAR',
-    'Set'       : 'SET',
-    'Add'       : 'ADD',
-    'Less'      : 'LESS',
-    'Left'      : 'LEFT',
-    'Right'     : 'RIGHT',
-    'Back'      : 'BACK',
-    'Same'      : 'SAME',
-    'ChangeDir' : 'CHDIR',
-    'Place'     : 'PLACE',
-    'Block'     : 'BLOCK',
-    'High'      : 'HIGH',
-    'Put'       : 'PUT',
-    'Light'     : 'LIGHT',
-    'Pos'       : 'POS',
-    'Keep'      : 'KEEP',
-    'Kend'      : 'KEND',
-    'Skip'      : 'SKIP',
-    'For'       : 'FOR',
-    'Times'     : 'TIMES',
-    'FEnd'      : 'FEND',
-    'When'      : 'WHEN',
-    'Whend'     : 'WHEND',
-    'PosStart'  : 'POSSTART',
-    'Call'      : 'CALL'
-}
-
-tokens = tokens + list(reservadas.values())
 
 t_ignore = '\t'
 t_NUM = r'[0-9]+'
@@ -62,24 +35,6 @@ t_LCBRA = r'{'
 t_RCBRA = r'}'
 
 
-def t_error(t):
-    print("Ilegal char '%s'" % t.value[0])
-    t.lexer.skip(1)
-
-
-def t_COMMENT(t):
-    r'^\/\/.*'
-    pass
-
-
-def t_RESERVED(t):
-    r'[A-Za-z]+'
-    print(t.value in reservadas)
-    if t.value in reservadas:
-        t.value = t.value.upper()
-        t.type = t.value
-        return t
-
 def t_ID(t):
     r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM)*'
     
@@ -94,6 +49,15 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
     return
+
+def t_COMMENT(t):
+    r'^\/\/.*'
+    pass
+
+def t_error(t):
+    print("Ilegal char '%s'" % t.value[0])
+    t.lexer.skip(1)
+
 
 
 directorio = '~/Documents/LightBotCCLang/LightBotCC/tests/'
