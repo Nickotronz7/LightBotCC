@@ -1,3 +1,5 @@
 // Holis Dago
 
-Set Age = 15;
+Var age = 15;
+
+Set age = 21;

@@ -6,10 +6,10 @@ import sys
 
 import ply.lex as lex
 
-reservadas = ['Proc', 'PrEnd', 'Begin', 'End', 'Var', 'Set', 'Add', 'Less',
-    'Left', 'Right', 'Back', 'Same', 'ChangeDir', 'Place', 'Block', 'High', 
-    'Put','Light', 'Pos', 'Keep', 'Kend', 'Skip', 'For', 'Times', 'Fend',
-    'When', 'Whend', 'PosStart', 'Call'
+reservadas = ['PROC', 'PREND', 'BEGIN', 'END', 'VAR', 'SET', 'ADD', 'LESS',
+    'LEFT', 'RIGHT', 'BACK', 'SAME', 'CHANGEDIR', 'PLACE', 'BLOCK', 'HIGH',
+    'PUT', 'LIGHT', 'POS', 'KEEP', 'KEND', 'SKIP', 'FOR', 'TIMES', 'FEND',
+    'WHEN', 'WHEND', 'POSSTART', 'CALL'
 ]
 
 tokens = reservadas + ['NUM', 'ESPECIAL', 'CHAR', 'ID', 'COMMENT', 'EOL', 
@@ -22,7 +22,6 @@ t_ignore = '\t'
 t_NUM = r'[0-9]+'
 t_SEMICOLON = r'\;'
 t_ASSING = r'='
-t_WHITESPACE = r'\s'
 t_SUM = r'\r'
 t_RES = r'\-'
 t_LPAR = r'\('
@@ -33,22 +32,36 @@ t_COMMA = r','
 t_QUOTE = r'"'
 t_LCBRA = r'{'
 t_RCBRA = r'}'
+t_PROC = r'Proc'
+t_PREND = r'Prend'
+t_BEGIN = r'Begin'
+t_END = r'End'
+t_VAR = r'Var'
+t_SET = r'Set'
+t_ADD = r'Add'
+t_LESS = r'Less'
+t_LEFT = r'Left'
+t_RIGHT = r'Right'
+t_BACK = r'Back'
+t_SAME = r'Same'
+t_CHANGEDIR = r'ChangeDir'
+t_PLACE = r'Place'
+t_BLOCK = r'Block'
+t_HIGH = r'High'
+t_WHEN = r'When'
+t_WHEND = r'Whend'
+t_POSSTART = r'PosStart'
+t_CALL = r'Call'
+t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM)*'
 
-
-def t_ID(t):
-    r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM)*'
-    
-    if t.value.upper() in reservadas:
-        t.value = t.value.upper()
-        t.type = t.value
-    
-    return t
+def t_WHITESPACE(t):
+    r'\s'
+    pass
 
 
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-    return
 
 def t_COMMENT(t):
     r'^\/\/.*'
