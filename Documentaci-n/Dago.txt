@@ -1,0 +1,2 @@
+Definición de expresiones regulares base para el análisis léxico del intérprete.
+Definición de la gramática libre de contexto para el análisis sintáctico del intérprete. Inicio:- 23:52 / 27/08/2018
