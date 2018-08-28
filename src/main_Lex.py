@@ -52,7 +52,7 @@ t_WHEN = r'When'
 t_WHEND = r'Whend'
 t_POSSTART = r'PosStart'
 t_CALL = r'Call'
-t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM)*'
+t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM){0,9}'
 
 def t_WHITESPACE(t):
     r'\s'
