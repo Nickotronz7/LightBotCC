@@ -14,7 +14,8 @@ reservadas = ['PROC', 'PREND', 'BEGIN', 'END', 'VAR', 'SET', 'ADD', 'LESS',
 
 tokens = reservadas + ['NUM', 'ESPECIAL', 'CHAR', 'ID', 'COMMENT', 'EOL', 
     'ASSING', 'SUM', 'RES', 'LPAR', 'RPAR', 'LBRA', 'RBRA',
-    'COMMA', 'SEMICOLON', 'QUOTE', 'LCBRA', 'RCBRA', 'WHITESPACE', 'RESERVED'
+    'COMMA', 'SEMICOLON', 'QUOTE', 'LCBRA', 'RCBRA', 'WHITESPACE', 'RESERVED',
+    'MATHEXPR'
 ]
 
 
@@ -53,6 +54,7 @@ t_WHEND = r'Whend'
 t_POSSTART = r'PosStart'
 t_CALL = r'Call'
 t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM){0,9}'
+t_MATHEXPR = r'(t_NUM(\+|-|\*|\\))*t_NUM'
 
 def t_WHITESPACE(t):
     r'\s'
