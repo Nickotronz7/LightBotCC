@@ -1,0 +1,6 @@
+Var l = 5;
+Begin
+
+Put Light;
+
+End
