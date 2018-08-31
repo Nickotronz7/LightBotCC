@@ -6,23 +6,26 @@ import sys
 
 import ply.lex as lex
 
+
+# Palabras reservadas
 reservadas = ['PROC', 'PREND', 'BEGIN', 'END', 'VAR', 'SET', 'ADD', 'LESS',
     'LEFT', 'RIGHT', 'BACK', 'SAME', 'CHANGEDIR', 'PLACE', 'BLOCK', 'HIGH',
     'PUT', 'LIGHT', 'POS', 'KEEP', 'KEND', 'SKIP', 'FOR', 'TIMES', 'FEND',
     'WHEN', 'WHEND', 'POSSTART', 'CALL'
 ]
 
-tokens = reservadas + ['NUM', 'ESPECIAL', 'CHAR', 'ID', 'COMMENT', 'EOL', 
-    'ASSING', 'SUM', 'RES', 'LPAR', 'RPAR', 'LBRA', 'RBRA',
-    'COMMA', 'SEMICOLON', 'QUOTE', 'LCBRA', 'RCBRA', 'WHITESPACE', 'RESERVED',
+tokens = reservadas + ['NUM', 'ESPECIAL', 'ID', 'COMMENT', 'EOL', 
+    'ASSIGN', 'SUM', 'RES', 'LPAR', 'RPAR', 'LBRA', 'RBRA',
+    'COMMA', 'SEMICOLON', 'QUOTE', 'LCBRA', 'RCBRA', 'WHITESPACE',
     'MATHEXPR'
 ]
 
+# especial
 
 t_ignore = '\t'
 t_NUM = r'[0-9]+'
 t_SEMICOLON = r'\;'
-t_ASSING = r'='
+t_ASSIGN = r'='
 t_SUM = r'\r'
 t_RES = r'\-'
 t_LPAR = r'\('
@@ -33,6 +36,9 @@ t_COMMA = r','
 t_QUOTE = r'"'
 t_LCBRA = r'{'
 t_RCBRA = r'}'
+
+
+# Palabras Reservadas en expresiones regulares
 t_PROC = r'Proc'
 t_PREND = r'Prend'
 t_BEGIN = r'Begin'
@@ -53,6 +59,15 @@ t_WHEN = r'When'
 t_WHEND = r'Whend'
 t_POSSTART = r'PosStart'
 t_CALL = r'Call'
+t_PUT = r'Put'
+t_POS = r'Pos'
+t_KEEP = r'Keep'
+t_KEND = r'Kend'
+t_LIGHT = r'Light'
+t_SKIP = r'Skip'
+t_FOR = r'For'
+t_TIMES = r'Times'
+t_FEND = r'Fend'
 t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM){0,9}'
 t_MATHEXPR = r'(t_NUM(\+|-|\*|\/))*t_NUM'
 
