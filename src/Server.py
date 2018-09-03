@@ -1,43 +1,52 @@
 import socket
 import sys
 
+class Server:
+    HOST = socket.gethostname()
+    PORT = 8888
+    moves=""
+    check_moves = False
 
-HOST=socket.gethostname()
-PORT = 8888
-moves=""
+    def set_list(self, _list):
+        _list = list(str(_list[1:-2], 'ascii'))
+        for var in _list:
+            if(var==','):
+                _list.remove(var)
+        self.moves = _list
+        self.check_moves = True
 
-def set_list(_list):
-    _list = list(str(_list[1:-2], 'ascii'))
-    for var in _list:
-        if(var==','):
-            _list.remove(var)
-    return _list
-            
+    def get_list(self):
+        self.check_moves = False
+        return self.moves
 
-def create_connection():
-    #print("TU DIRECCION IP ES:",socket.gethostbyname_ex(socket.gethostname()))
+    def create_connection(self):
+        moves_aux=""
+        #print("TU DIRECCION IP ES:",socket.gethostbyname_ex(socket.gethostname()))
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print('Socket created')
  
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print('socket created')
+        try:
+            s.bind((self.HOST, self.PORT))
+        except socket.error as err:
+            print('Bind Failed, Error Code: ' + str(err[0]) + ', Message: ' + err[1])
+            sys.exit()
  
-    try:
-        s.bind((HOST, PORT))
-    except socket.error as err:
-        print('Bind Failed, Error Code: ' + str(err[0]) + ', Message: ' + err[1])
-        sys.exit()
+        print('Socket Bind Success!')
  
-    print('Socket Bind Success!')
- 
-    s.listen(10)
-    print('Socket is now listening')
-    
-    while True:
+        s.listen(10)
+        print('Socket is now listening')
         conn, addr = s.accept()
         print('Connect with ' + addr[0] + ':' + str(addr[1]))
-        buf = conn.recv(128)
-        moves=buf
-        if(moves!=""):
-            break
-    s.close()
-    print("\n")
-    return set_list(moves)
+
+        i_empty_list=0
+        while True:
+            buf = conn.recv(128)
+            moves_aux=buf
+            if(moves_aux!=""):
+                self.set_list(moves_aux)
+                if(self.moves==[]):
+                    i_empty_list+=1
+                    if(i_empty_list==3):
+                        s.close()
+                        print("\n"+"Socket close"+"\n")
+                        break
