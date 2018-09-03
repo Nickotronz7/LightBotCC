@@ -1,10 +1,9 @@
-
+import ply.lex as lex
+import re
 import codecs
 import os
-import re
 import sys
 
-import ply.lex as lex
 
 
 # Palabras reservadas
@@ -13,6 +12,7 @@ reservadas = ['PROC', 'PREND', 'BEGIN', 'END', 'VAR', 'SET', 'ADD', 'LESS',
     'PUT', 'LIGHT', 'POS', 'KEEP', 'KEND', 'SKIP', 'FOR', 'TIMES', 'FEND',
     'WHEN', 'WHEND', 'POSSTART', 'CALL'
 ]
+
 
 tokens = reservadas + ['NUM', 'ESPECIAL', 'ID', 'COMMENT', 'EOL', 
     'ASSIGN', 'SUM', 'RES', 'LPAR', 'RPAR', 'LBRA', 'RBRA',
@@ -60,6 +60,7 @@ t_WHEND = r'Whend'
 t_POSSTART = r'PosStart'
 t_CALL = r'Call'
 t_PUT = r'Put'
+t_LIGHT = r'Light'
 t_POS = r'Pos'
 t_KEEP = r'Keep'
 t_KEND = r'Kend'
@@ -69,7 +70,7 @@ t_FOR = r'For'
 t_TIMES = r'Times'
 t_FEND = r'Fend'
 t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM){0,9}'
-t_MATHEXPR = r'(t_NUM(\+|-|\*|\/))*t_NUM'
+t_MATHEXPR = r'(t_NUM(\+|-|\*|\\))*t_NUM'
 
 def t_WHITESPACE(t):
     r'\s'
@@ -89,19 +90,16 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-
-directorio = '~/Documents/LightBotCCLang/LightBotCC/tests/'
-archivo = open('/home/nickotronz7/Documents/LightBotCCLang/LightBotCC/tests/prueba1.nic')
-chain = archivo.read()
-archivo.close()
+#directorio = '~/Documents/LightBotCCLang/LightBotCC/tests/'
+#archivo = open('/home/nickotronz7/Documents/LightBotCCLang/LightBotCC/tests/prueba1.nic')
+#chain = archivo.read()
+#archivo.close()
 
 analizador = lex.lex()
 
-analizador.input(chain)
+#analizador.input(chain)
 
-while True:
-    tok = analizador.token()
-    if not tok: break
-    print (tok)
-
-
+#while True:
+#    tok = analizador.token()
+#    if not tok: break
+#    print (tok)
