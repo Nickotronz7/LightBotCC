@@ -60,21 +60,45 @@ def p_expresiones9(p):
 	'''expresiones : llamar expresiones'''
 	print ("expresiones9")
 		
-#def p_expresiones10(p):
-#	'''expresiones : c_keep expresiones'''
-#	print ("expresiones10")
+def p_expresiones10(p):
+	'''expresiones : c_keep expresiones'''
+	print ("expresiones10")
 		
-#def p_expresiones11(p):
-#	'''expresiones : c_for expresiones'''
-#	print ("expresiones11")
+def p_expresiones11(p):
+	'''expresiones : c_for expresiones'''
+	print ("expresiones11")
 
-#def p_expresiones12(p):
-#	'''expresiones : c_when expresiones'''
-#	print ("expresiones12")
+def p_expresiones12(p):
+	'''expresiones : c_when expresiones '''
+	print ("expresiones12")
+
+def p_expresiones13(p):
+	'''expresiones : SKIP SEMICOLON expresiones'''
+	print ("expresiones13")
+	
+def p_expresiones14(p):
+	'''expresiones  : COMMENT expresiones'''
+	print("comentario")
 
 def p_expresionesEpsilon(p):
 	'''expresiones : epsilon'''
-	print ("expresiones13")
+	print ("epsilon")
+
+def p_cicloFor(p):
+	'''c_for : FOR comparacion TIMES expresiones FEND SEMICOLON'''
+	print("cicloFor")
+
+def p_cicloWhen(p):
+	'''c_when : WHEN comparacion THEN expresiones WHEND SEMICOLON'''
+	print("cicloWhen")
+
+def p_cicloKeep(p):
+	'''c_keep : KEEP expresiones KEND SEMICOLON'''
+	print("cicloKeep")
+
+def p_comparacion(p):
+	'''comparacion : ID ASSIGN NUM'''
+	print("comparacion")
 
 def p_asignar(p):
 	'''asignar : SET ID ASSIGN NUM SEMICOLON'''
@@ -153,7 +177,7 @@ def p_llamar(p):
 	print ("llamar")
 				
 def p_procedimientos_1(p):
-	'''procedimientos : PROC ID expresiones PREND'''
+	'''procedimientos : PROC ID expresiones ENDPROC SEMICOLON'''
 	print ("procedimientos_1")
 
 def p_procedimientos_2(p):
@@ -196,12 +220,12 @@ def buscarFicheros(directorio):
 
 #directorio = "C:\\Users\\DEMEN\\Desktop\\LightBotCC\\LightBotCC-master\\src\\"
 #archivo = buscarFicheros(directorio)
-test = 'prueba1.LBcc.txt'
+test = 'prueba2.LBcc.txt'
 fp = codecs.open(test,"r","utf-8")
 cadena = fp.read()
 fp.close()
 
-parser = yacc.yacc('LALR')
+parser = yacc.yacc()
 result = parser.parse(cadena)
 
 print (result)

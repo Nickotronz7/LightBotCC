@@ -7,10 +7,10 @@ import sys
 
 
 # Palabras reservadas
-reservadas = ['PROC', 'PREND', 'BEGIN', 'END', 'VAR', 'SET', 'ADD', 'LESS',
+reservadas = ['PROC', 'ENDPROC', 'BEGIN', 'END', 'VAR', 'SET', 'ADD', 'LESS',
     'LEFT', 'RIGHT', 'BACK', 'SAME', 'CHANGEDIR', 'PLACE', 'BLOCK', 'HIGH',
     'PUT', 'LIGHT', 'POS', 'KEEP', 'KEND', 'SKIP', 'FOR', 'TIMES', 'FEND',
-    'WHEN', 'WHEND', 'POSSTART', 'CALL'
+    'WHEN', 'THEN', 'WHEND', 'POSSTART', 'CALL'
 ]
 
 
@@ -26,7 +26,7 @@ t_ignore = '\t'
 t_NUM = r'[0-9]+'
 t_SEMICOLON = r'\;'
 t_ASSIGN = r'='
-t_SUM = r'\r'
+t_SUM = r'\+'
 t_RES = r'\-'
 t_LPAR = r'\('
 t_RPAR = r'\)'
@@ -40,7 +40,7 @@ t_RCBRA = r'}'
 
 # Palabras Reservadas en expresiones regulares
 t_PROC = r'Proc'
-t_PREND = r'Prend'
+t_ENDPROC = r'End-Proc'
 t_BEGIN = r'Begin'
 t_END = r'End'
 t_VAR = r'Var'
@@ -56,6 +56,7 @@ t_PLACE = r'Place'
 t_BLOCK = r'Block'
 t_HIGH = r'High'
 t_WHEN = r'When'
+t_THEN = r'Then'
 t_WHEND = r'Whend'
 t_POSSTART = r'PosStart'
 t_CALL = r'Call'
@@ -64,7 +65,6 @@ t_LIGHT = r'Light'
 t_POS = r'Pos'
 t_KEEP = r'Keep'
 t_KEND = r'Kend'
-t_LIGHT = r'Light'
 t_SKIP = r'Skip'
 t_FOR = r'For'
 t_TIMES = r'Times'
@@ -82,7 +82,7 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 def t_COMMENT(t):
-    r'^\/\/.*'
+    r'\".*\"'
     pass
 
 def t_error(t):
