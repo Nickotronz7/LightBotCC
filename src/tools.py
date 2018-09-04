@@ -40,29 +40,22 @@ def oPIndex(string):
 # clasifica los operadores en 1 o 0 siendo 1 -> *,/ y 0 -> +,- basado en la
 # prioridad de operaciones
 def getOpType(op):
-    type1 = ["/","*"]
+    type1 = ['/','*']
     if op in type1:
         return 1
     else:
         return 0
 
 # ordena el diccionario segun la prioridad de operadores
-def sortOps(string, opsDic):
-    type1 = {}
-    type2 = {}
-    key = 0
-    while key < len(string):
-        if opsDic.get(key) != None:
-            if getOpType(opsDic.get(key)):
-                type1.update({key : opsDic.get(key)})
-                key+=1
-            else:
-                type2.update({key : opsDic.get(key)})
-                key+=1
+def sortOps(string, opsList):
+    type1 = []
+    type2 = []
+    for i in opsList:
+        if getOpType(string[i]):
+            type1 += [i]
         else:
-            key+=1
-
-    type1.update(type2)
+            type2 += [i]
+    type1 += type2
     return type1
 
 #De String a lista con numeros
@@ -81,9 +74,25 @@ def stringToListWithNums(opIndex, string):
             cont +=1
 
 
-def cArbol(listString):
-    readerHead = len(listString)
+def crearArbol(tree, opIndexList):
+    if len(opIndexList) == 1:
+        return tree
+    else:
+        n = opIndexList[0]
+        print(tree)
+        tmp1 = tree[:n-1]
+        tmp2 = [tree[n-1:n+2]]
+        tmp3 = tree[n+2:]
+        return crearArbol(tmp1+tmp2+tmp3, sortOps(tmp1+tmp2+tmp3,oPIndex(tmp1+tmp2+tmp3)))
 
+
+def getTree(string):
+    opIndex = oPIndex(final_test)
+    tree = stringToListWithNums(opIndex, final_test)
+    opIndex2 = oPIndex(tree)
+    opIndexSort = sortOps(tree,opIndex2)
+    print(opIndexSort)
+    return crearArbol(tree, opIndexSort)
     
 
-
+print(getTree(final_test))
