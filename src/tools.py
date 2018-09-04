@@ -94,5 +94,3 @@ def getTree(string):
     print(opIndexSort)
     return crearArbol(tree, opIndexSort)
     
-
-print(getTree(final_test))
