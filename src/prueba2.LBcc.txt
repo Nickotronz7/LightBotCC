@@ -1,0 +1,17 @@
+Var jk = 0;
+Begin
+PosStart(0,0);
+When k = 5 Then
+    Call k;
+    Put Light;
+Whend;
+End
+Proc k
+    For k = 0 Times
+        Keep
+            Skip;
+        Kend;
+"//gasfdh"
+    Fend;
+    Pos(0, 0);
+End-Proc;
