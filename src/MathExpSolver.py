@@ -1,11 +1,3 @@
-case1 = "5+1"
-case2 = "5+3-1"
-
-z = ["+","-","/","*"]
-
-primer_test = "10+20-30"
-final_test = "10+20*30-40/50"
-
 # funcion que retorna la cantidad de operadores de la exprecion
 def getCantOps(string):
     index = 0
@@ -25,7 +17,7 @@ def oPIndex(string):
     couter = 0
     cant = getCantOps(string)
     result = []
-    oPS = ["+","-","/","*"]
+    oPS = ['+','-','/','*']
     if string == None:
         return result
     while couter < len(string) and cant > 0:
@@ -74,24 +66,55 @@ def stringToListWithNums(opIndex, string):
             cont +=1
 
 
+# Funcion que crea el arbol compreto
 def crearArbol(tree, opIndexList):
     if len(opIndexList) == 1:
         return tree
     else:
         n = opIndexList[0]
-        print(tree)
         tmp1 = tree[:n-1]
         tmp2 = [tree[n-1:n+2]]
         tmp3 = tree[n+2:]
         return crearArbol(tmp1+tmp2+tmp3, sortOps(tmp1+tmp2+tmp3,oPIndex(tmp1+tmp2+tmp3)))
 
 
+# Funcion que setea el string para poder empezar a construir el arbol
 def getTree(string):
-    opIndex = oPIndex(final_test)
-    tree = stringToListWithNums(opIndex, final_test)
+    opIndex = oPIndex(string)
+    tree = stringToListWithNums(opIndex, string)
     opIndex2 = oPIndex(tree)
     opIndexSort = sortOps(tree,opIndex2)
-    print(opIndexSort)
     return crearArbol(tree, opIndexSort)
     
-print("hola")
+
+# Funcion que resuevel un arbol basico de un operador y dos hoja que son numeros
+def solveBasicTree(tree):
+    oP = tree[1]
+    if oP == '+':
+        return (tree[0] + tree [2])
+    elif oP == '-':
+        return (tree[0] - tree [2])
+    elif oP == '*':
+        return (tree[0] * tree[2])
+    elif oP == '/' and tree[2] != 0:
+        return (tree[0] / tree[2])
+    else:
+        return "Error operacion invalida"
+
+
+# Funcion que busca sub arboles para resolver la cuacion
+def solveTree(tree):
+    index = 0
+    while index <= len(tree)-1:
+        if type(tree[index])  == list:
+            tree[index] = solveTree(tree[index])
+            index += 1
+        else:
+            index += 1
+    return solveBasicTree(tree)
+
+
+#funcion principal que llama a las demas funciones
+def sovlveMathExp(string):
+    return solveTree(getTree(string))
+
