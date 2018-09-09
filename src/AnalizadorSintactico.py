@@ -243,41 +243,7 @@ def p_error(p):
 	print ("Error de sintaxis ", p)
 	#print "Error en la linea "+str(p.lineno)
 
-'''
-def buscarFicheros(directorio):
-	ficheros = []
-	files = []
-	numArchivo = ''
-	respuesta = False
-	cont = 1
-
-	for base, dirs, files in os.walk(directorio):
-		ficheros.append(files)
-
-	for file in files:
-	#	print (str(cont)+". "+file)
-		cont = cont+1
-
-	while respuesta == False:
-		numArchivo = str(input('\nNumero del test: '))
-		for file in files:
-			if file == files[int(numArchivo)-1]:
-				respuesta = True
-				break
-
-#	print ("Has escogido \"%s\" \n" %files[int(numArchivo)-1])
-
-	return files[int(numArchivo)-1]
-'''
-
-#directorio = "C:\\Users\\DEMEN\\Desktop\\LightBotCC\\LightBotCC-master\\src\\"
-#archivo = buscarFicheros(directorio)
-#test = 'prueba2.LBcc.txt'
-#fp = codecs.open(test,"r","utf-8")
-#cadena = fp.read()
-#fp.close()
-
 def analisisSintantico(txt):
 	parser = yacc.yacc()
-	result = parser.parse(txt)
+	parser.parse(txt)
 
