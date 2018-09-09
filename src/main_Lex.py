@@ -4,6 +4,7 @@ import codecs
 import os
 import sys
 
+from globalVar import _MAT as _mat
 
 
 # Palabras reservadas
@@ -23,9 +24,9 @@ tokens = reservadas + ['NUM', 'ESPECIAL', 'ID', 'COMMENT', 'EOL',
 # especial
 
 t_ignore = '\t'
+
 def t_NUM(t):
     r'[0-9]+'
-    print(t.value)
     return t
     
 t_SEMICOLON = r';'

@@ -1,11 +1,11 @@
 Var jk = 0;
 Begin
 PosStart(0,0);
-When k = 5 Then
-    Call k;
-    Put Light;
-Whend;
+Place Block 8;
+Pos(0,5);
+Put Light;
 End
+
 Proc k
     For k = 0 Times
         Keep
