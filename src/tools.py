@@ -3,7 +3,8 @@ case2 = "5+3-1"
 
 z = ["+","-","/","*"]
 
-exp = "5+1*3-9"
+primer_test = "10+20-30"
+final_test = "10+20*30-40/50"
 
 # funcion que retorna la cantidad de operadores de la exprecion
 def getCantOps(string):
@@ -23,13 +24,13 @@ def getCantOps(string):
 def oPIndex(string):
     couter = 0
     cant = getCantOps(string)
-    result = {}
+    result = []
     oPS = ["+","-","/","*"]
     if string == None:
         return result
     while couter < len(string) and cant > 0:
         if string[couter] in oPS:
-            result.update({couter : string[couter]})
+            result += [couter]
             couter+=1
             cant-=1
         else:
@@ -64,15 +65,25 @@ def sortOps(string, opsDic):
     type1.update(type2)
     return type1
 
-def cArbol(string):
-    #oPS = ["+","-","/","*"]
-    if string == None:
-        return []
-    else:
-        opIndex = oPIndex(string)
-        #opType = getOpType(string[opIndex])
-        return [string[opIndex-1], string[opIndex], string[opIndex+1]]
+#De String a lista con numeros
+def stringToListWithNums(opIndex, string):
+    cont = 0
+    newList = []
+    while cont < len(opIndex):
+        if not cont:
+            newList += [int(string[:opIndex[cont]]), string[opIndex[cont]]]
+            cont +=1
+        elif cont == (len(opIndex)-1):
+            newList += [int(string[opIndex[cont-1]+1:opIndex[cont]]), string[opIndex[cont]], int(string[opIndex[cont]+1:])]
+            return newList
+        else:
+            newList += [int(string[opIndex[cont-1]+1:opIndex[cont]]), string[opIndex[cont]]]
+            cont +=1
 
 
-dic = oPIndex(case2)
-print(sortOps(case2,dic))
+def cArbol(listString):
+    readerHead = len(listString)
+
+    
+
+
