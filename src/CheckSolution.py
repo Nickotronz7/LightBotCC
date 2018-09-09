@@ -13,12 +13,13 @@ class CheckSolution:
 
     win=False
     user_level=0
+    solution_i_aux=0
 
-    NUM_LIGHTS=1 #Número de luces por encender
+    NUM_LIGHTS=3 #Número de luces por encender
 
     maze = [
     [0,8,8,8,8,8,8,8],
-    [4,2,1,2,1,1,2,2],
+    [4,0,1,2,1,8,8,8],
     [8,8,8,8,14,8,8,8],
     [8,8,8,8,0,8,8,8],
     [8,8,8,8,4,8,8,8],
@@ -31,23 +32,24 @@ class CheckSolution:
 
     #Algoritmo pseudo backtracking
     def solvemaze(self, r, c, solution_i, lights_on, watching_at, user_solution):
-        print(r, c)
-        print("Luces encendidas: ", lights_on)
-        
+        #print(r, c)
+        #print("Luces encendidas: ", lights_on)
+
+        self.solution_i_aux=solution_i
         if(lights_on==self.NUM_LIGHTS):
             self.win=True
-            return True
+            return user_solution[0:self.solution_i_aux]
         try:
-            if(self.maze[r][c]==self.LEVEL_3 and self.user_level==self.LEVEL_1):
-                print("HERE")
             if(r<0 or c<0 or r>self.SIZE or c>self.SIZE or solution_i>=len(user_solution) or self.maze[r][c]==self.WALL
                 or ((self.maze[r][c]==self.PLAIN) and (self.user_level==self.LEVEL_2 or self.user_level==self.LEVEL_3)) 
                 or ((self.maze[r][c]==self.LEVEL_2 or self.maze[r][c]==self.LEVEL_3) and self.user_level==self.PLAIN)
                 or (self.maze[r][c]==self.LEVEL_3 and self.user_level==self.LEVEL_1)):
-                return False
+                self.win=False
+                return user_solution[0:self.solution_i_aux]
         except Exception as e:
             print(e)
-            return False
+            self.win=False
+            return user_solution[0:self.solution_i_aux]
 
         
         if(self.maze[r][c]==self.LIGHT):
@@ -58,8 +60,11 @@ class CheckSolution:
         self.solution[r][c] = 9 #Ignorar, es para hacer pruebas
         
         #Validacion para moverse
-        if((user_solution[solution_i]==self.LIGHT)and((self.maze[r][c]%10)==4)):
+        if((user_solution[solution_i]==self.LIGHT)and((self.maze[r][c]%10)==4)and(not self.light_on)):
+            self.light_on=True
             self.solvemaze(r, c, solution_i+1, lights_on+1, watching_at, user_solution)
+
+        self.light_on=False
 
         if(user_solution[solution_i]==self.WALK):
             if(watching_at=="DOWN"):
@@ -108,10 +113,13 @@ class CheckSolution:
             if(watching_at=="TOP"):
                 self.solvemaze(r-1, c, solution_i+1, lights_on, "TOP", user_solution)
         
-        return self.win
+        return user_solution[0:self.solution_i_aux]
     
-#user_solution=[0,1,0,0,0,0,1,0,4,0,0,4]
+#user_solution=[0,4,1,0,3,3,0,1,0,4,0,0,4]
 #test=CheckSolution()
+#print(test.solvemaze(0,0,0,0,"DOWN",[0,4,1,0,3,0]))
+#print(test.solvemaze(0,0,0,0,"DOWN",[0,4,4,4,3,0]))
 #print(test.solvemaze(0,0,0,0,"DOWN",user_solution))
+
 #for var in test.solution:
 #    print(var)
