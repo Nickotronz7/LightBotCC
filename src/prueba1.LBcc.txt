@@ -1,6 +1,5 @@
-Var l = 5;
+Var fd = 0; 
 Begin
-
 Put Light;
 
 End

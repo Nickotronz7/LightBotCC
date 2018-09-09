@@ -2,10 +2,9 @@ import ply.yacc as yacc
 import os
 import codecs
 import re
+
 from main_Lex import tokens
 from sys import stdin
-
-precedence = ()
 
 def p_programa(p):
 	'''programa : variable BEGIN expresiones END procedimientos'''
@@ -186,11 +185,12 @@ def p_procedimientos_2(p):
 
 def p_epsilon(p):
 	'''epsilon :'''
-	print ("procedimientos")
+	print ("epsilon")
 
 def p_error(p):
 	print ("Error de sintaxis ", p)
 	#print "Error en la linea "+str(p.lineno)
+
 '''
 def buscarFicheros(directorio):
 	ficheros = []
@@ -220,12 +220,12 @@ def buscarFicheros(directorio):
 
 #directorio = "C:\\Users\\DEMEN\\Desktop\\LightBotCC\\LightBotCC-master\\src\\"
 #archivo = buscarFicheros(directorio)
-test = 'prueba2.LBcc.txt'
-fp = codecs.open(test,"r","utf-8")
-cadena = fp.read()
-fp.close()
+#test = 'prueba2.LBcc.txt'
+#fp = codecs.open(test,"r","utf-8")
+#cadena = fp.read()
+#fp.close()
 
-parser = yacc.yacc()
-result = parser.parse(cadena)
-
-print (result)
+def analisisSintantico(txt):
+	parser = yacc.yacc()
+	result = parser.parse(txt)
+	print (result)

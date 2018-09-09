@@ -23,8 +23,12 @@ tokens = reservadas + ['NUM', 'ESPECIAL', 'ID', 'COMMENT', 'EOL',
 # especial
 
 t_ignore = '\t'
-t_NUM = r'[0-9]+'
-t_SEMICOLON = r'\;'
+def t_NUM(t):
+    r'[0-9]+'
+    print(t.value)
+    return t
+    
+t_SEMICOLON = r';'
 t_ASSIGN = r'='
 t_SUM = r'\+'
 t_RES = r'\-'
@@ -32,10 +36,10 @@ t_LPAR = r'\('
 t_RPAR = r'\)'
 t_LBRA = r'\['
 t_RBRA = r'\]'
-t_COMMA = r','
-t_QUOTE = r'"'
-t_LCBRA = r'{'
-t_RCBRA = r'}'
+t_COMMA = r'\,'
+t_QUOTE = r'\"'
+t_LCBRA = r'\{'
+t_RCBRA = r'\}'
 
 
 # Palabras Reservadas en expresiones regulares
@@ -69,17 +73,16 @@ t_SKIP = r'Skip'
 t_FOR = r'For'
 t_TIMES = r'Times'
 t_FEND = r'Fend'
-t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|t_NUM){0,9}'
+t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|[0-9]){0,9}'
 t_MATHEXPR = r'(t_NUM(\+|-|\*|\\))*t_NUM'
 
 def t_WHITESPACE(t):
     r'\s'
     pass
 
-
 def t_newline(t):
     r'\n+'
-    t.lexer.lineno += len(t.value)
+    t.lexer.lineno += t.value.count("\n")
 
 def t_COMMENT(t):
     r'\".*\"'
@@ -95,7 +98,7 @@ def t_error(t):
 #chain = archivo.read()
 #archivo.close()
 
-analizador = lex.lex()
+lexer = lex.lex()
 
 #analizador.input(chain)
 
