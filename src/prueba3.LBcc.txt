@@ -1,0 +1,26 @@
+PosStart(0,0);
+
+Begin
+
+ChangeDir([RIGHT]);
+place block 5;
+ChangeDir([DOWN]);
+High Block;
+Call putAlternLowHigh;
+Put Light;
+Var i = 0;
+
+Keep
+    Put Light
+    When i = n Then
+        Skip;
+    Whend;
+    Add+i;
+Kend;
+
+End
+
+Proc putAlternLowHigh
+    HighBlock;
+    Place Block;
+End-Proc;
