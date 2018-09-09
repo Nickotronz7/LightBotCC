@@ -64,19 +64,19 @@ class CheckSolution:
         if(user_solution[solution_i]==self.WALK):
             if(watching_at=="DOWN"):
                 if((int(str(self.maze[r+1][c])[0])>self.user_level) and (int(str(self.maze[r+1][c])[0])!=4)):
-                    return False;
+                    return False
                 self.solvemaze(r+1, c, solution_i+1, lights_on, "DOWN", user_solution)
             if(watching_at=="RIGHT"):
                 if((int(str(self.maze[r][c+1])[0])>self.user_level) and (int(str(self.maze[r][c+1])[0])!=4)):
-                    return False;
+                    return False
                 self.solvemaze(r, c+1, solution_i+1, lights_on, "RIGHT", user_solution)
             if(watching_at=="LEFT"):
                 if((int(str(self.maze[r][c-1])[0])>self.user_level) and (int(str(self.maze[r][c-1])[0])!=4)):
-                    return False;
+                    return False
                 self.solvemaze(r, c-1, solution_i+1, lights_on, "LEFT", user_solution)
             if(watching_at=="TOP"):
                 if((int(str(self.maze[r-1][c])[0])>self.user_level) and (int(str(self.maze[r-1][c])[0])!=4)):
-                    return False;
+                    return False
                 self.solvemaze(r-1, c, solution_i+1, lights_on, "TOP", user_solution)
 
         if(user_solution[solution_i]==self.RIGHT):
