@@ -44,8 +44,7 @@ def p_programa(p):
 	print(p[0])
 
 def p_variable(p):
-	'''variable : VAR variable1'''
-	p[0] = ('VAR', 1)							# Estructura principal de una definición de variable
+	'''variable : VAR variable1''' 							# Estructura principal de una definición de variable
 
 def p_variable1(p):
 	'''variable1 : ID ASSIGN NUM SEMICOLON'''				# Primera forma de definir una variable, se define de la forma:
