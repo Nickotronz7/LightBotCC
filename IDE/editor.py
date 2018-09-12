@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import filedialog
 
-root=Tk("Text Editor")
+root=Tk()
+root.title("LightBotCC IDE")
 root.filename =  filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("txt files","*.txt"),("all files","*.*")))
 global text
 text=Text(root) 
