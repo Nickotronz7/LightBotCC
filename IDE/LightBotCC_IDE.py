@@ -1,8 +1,13 @@
 import tkinter as tk
-from tkinter import *
 from tkinter.filedialog import askopenfilename
-from tkinter.filedialog import *
-
+from tkinter.filedialog import asksaveasfile
+from tkinter import Frame
+from tkinter import Menu
+from tkinter import Toplevel
+from tkinter import BOTH
+from tkinter import Label
+from tkinter import END
+from tkinter import Tk
 
 
 class TextLineNumbers(tk.Canvas):
