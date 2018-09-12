@@ -34,7 +34,7 @@ class Window(Frame):
 
     def open_file(self):
         print("open_file(self)")
-        root.filename = filedailog.askopenfilename(initialdir = "C:/Users/curso/Desktop",title = "Select file",filetypes = (("text file","*.txt"),("all files","*.*")))
+        #root.filename = filedailog.askopenfilename(initialdir = "~/Desktop",title = "Select file",filetypes = (("text file","*.txt"),("all files","*.*")))
         print (root.filename)
 
     def save_file(self):
@@ -44,8 +44,6 @@ class Window(Frame):
         print("run_file(self)")
         
     
-
-
 
 
 
