@@ -5,7 +5,7 @@ global _POSSTART
 _POSSTART = [0,0]
 
 global _ACTUALPOS
-_ACTUALPOS = [0,0,1] # X, Y, Side
+_ACTUALPOS = [0,0,1] # X, Y, Dirección
 
 def printMat():
 	global _MAT

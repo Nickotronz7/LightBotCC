@@ -59,10 +59,12 @@ def stringToListWithNums(opIndex, string):
             newList += [int(string[:opIndex[cont]]), string[opIndex[cont]]]
             cont +=1
         elif cont == (len(opIndex)-1):
-            newList += [int(string[opIndex[cont-1]+1:opIndex[cont]]), string[opIndex[cont]], int(string[opIndex[cont]+1:])]
+            newList += [int(string[opIndex[cont-1]+1:opIndex[cont]]), 
+                string[opIndex[cont]], int(string[opIndex[cont]+1:])]
             return newList
         else:
-            newList += [int(string[opIndex[cont-1]+1:opIndex[cont]]), string[opIndex[cont]]]
+            newList += [int(string[opIndex[cont-1]+1:opIndex[cont]]), 
+                string[opIndex[cont]]]
             cont +=1
 
 
@@ -75,7 +77,8 @@ def crearArbol(tree, opIndexList):
         tmp1 = tree[:n-1]
         tmp2 = [tree[n-1:n+2]]
         tmp3 = tree[n+2:]
-        return crearArbol(tmp1+tmp2+tmp3, sortOps(tmp1+tmp2+tmp3,oPIndex(tmp1+tmp2+tmp3)))
+        return crearArbol(tmp1+tmp2+tmp3, sortOps(tmp1+tmp2+tmp3, 
+            oPIndex(tmp1+tmp2+tmp3)))
 
 
 # Funcion que setea el string para poder empezar a construir el arbol

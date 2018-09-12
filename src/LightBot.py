@@ -27,7 +27,7 @@ def main(route):
 
     analisisSintantico(file)
     global _variables
-    printMat()
+    #printMat()
     #print (_variables)
 
     return 1                                                                        # Análisis realizado correctamente
