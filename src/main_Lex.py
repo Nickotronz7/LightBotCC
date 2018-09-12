@@ -104,7 +104,7 @@ def t_newline(t):                                       # Expresión regular que
     t.lexer.lineno += t.value.count("\n")
 
 def t_COMMENT(t):                                       # Expresión regular que hace match con las lineas que inician con /*, correspondientes a comentarios.
-    r'^\/\*$'
+    r'\".*\"$'
     pass
 
 def t_error(t):                                         # Expresión regular que hace match con cualquier caractér no presente en el lenguaje.
