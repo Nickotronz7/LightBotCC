@@ -21,7 +21,7 @@ class Server:
 
     def create_connection(self):
         moves_aux=""
-        #print("TU DIRECCION IP ES:",socket.gethostbyname_ex(socket.gethostname()))
+        print("TU DIRECCION IP ES:",socket.gethostbyname_ex(socket.gethostname()))
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print('Socket created')
  
