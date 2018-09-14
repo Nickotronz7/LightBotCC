@@ -44,7 +44,8 @@ def p_programa(p):
 	print(p[0])
 
 def p_variable(p):
-	'''variable : VAR variable1''' 							# Estructura principal de una definición de variable
+	'''variable : VAR variable1'''
+	p[0] = ('VAR', 1)							# Estructura principal de una definición de variable
 
 def p_variable1(p):
 	'''variable1 : ID ASSIGN NUM SEMICOLON'''				# Primera forma de definir una variable, se define de la forma:
@@ -115,21 +116,30 @@ def p_expresionesEpsilon(p):
 	'''expresiones : epsilon'''								# Definición de la producción hilera vacía.
 
 def p_cicloFor(p):
-	'''c_for : FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON'''	
+	'''c_for : FOR ID ASSIGN NUM TIMES '''	
 #															# Definición explícita de un ciclo For, se  define:
 #															# For foo = NUM Times expresiones Fend;
 #															# Donde expresiones representa un no-terminal.
 
+def p_endCicloFor(p):
+	'''expresiones: FEND SEMICOLON expresiones '''
+
 def p_cicloWhen(p):
-	'''c_when : WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON'''
+	'''c_when : WHEN ID ASSIGN NUM THEN '''
 #															# Definicion explicita de una comparacion del tipo When, se define:
 #															# When foo = NUM Then expresiones Whend;
 
+def p_endCicloWhen(p):
+	'''expresiones: WHEND SEMICOLON expresiones'''
+
 def p_cicloKeep(p):
-	'''c_keep : KEEP expresiones KEND SEMICOLON'''			# Definicion explicita del ciclo Keep, se define de la forma:
+	'''c_keep : KEEP'''										# Definicion explicita del ciclo Keep, se define de la forma:
 #															# Keep expresiones Kend;
 #															# Donde el ciclo se detiene solamente si encuentra el valor Skip dentro
 #															# de las expresiones.
+
+def p_endCicloKeep(p):
+	'''expresiones: KEND SEMICOLON expresiones'''
 
 def p_asignar(p):
 	'''asignar : SET ID ASSIGN NUM SEMICOLON'''				# Definición explícita para asignar valor a una variable, se utiliza:
@@ -152,42 +162,41 @@ def p_actualizar_1(p):
 	global _variables
 	_variables[p[2]] -=1
 		
-def p_cambiar_direccion(p):
-	'''cambiar_direccion : CHANGEDIR LPAR direccion SEMICOLON'''
-			
-def p_direccion_1(p):
-	'''direccion : LEFT RPAR'''								# Actualiza el valor de la dirección en  que se colocan los bloques,
+def p_cambiar_direccion1(p):
+	'''cambiar_direccion : CHANGEDIR LPAR LEFT RPAR SEMICOLON'''								
+#															# Actualiza el valor de la dirección en  que se colocan los bloques,
 #															# rota hacia la izquierda relativa al frente actual. Se implementa:
 #															# ChangeDir(LEFT);
 	global _actualPos
 	_actualPos[2] = (_actualPos - 1 )%4
+			
 				
-def p_direccion_2(p):
-	'''direccion : RIGHT RPAR'''							# Actualiza el valor de la dirección en que se colocan los bloques,
+def p_cambiar_direccion2(p):
+	'''cambiar_direccion : CHANGEDIR LPAR RIGHT RPAR SEMICOLON'''
+#															# Actualiza el valor de la dirección en que se colocan los bloques,
 #															# rota hacia la derecha relativa al frente actual. Se implementa:
 #															# ChangeDir(RIGHT);
 	global _actualPos
 	_actualPos[2] = (_actualPos + 1 )%4
 				
-def p_direccion_3(p):
-	'''direccion : BACK RPAR'''								# Actualiza el valor de la dirección en que se colocan los bloques,
+def p_cambiar_direccion3(p):
+	'''cambiar_direccion : CHANGEDIR LPAR BACK RPAR SEMICOLON'''
+#															# Actualiza el valor de la dirección en que se colocan los bloques,
 #															# invierte la dirección relativa al frente actual. Se implementa:
 #															# ChangeDir(BACK);
 	global _actualPos
 	_actualPos[2] = (_actualPos + 2 )%4
 				
-def p_direccion_4(p):
-	'''direccion : SAME RPAR'''								# Actualiza el valor de la dirección en que se colocan los bloques,
+def p_cambiar_direccion4(p):
+	'''cambiar_direccion : CHANGEDIR LPAR SAME RPAR SEMICOLON'''
+#															# Actualiza el valor de la dirección en que se colocan los bloques,
 #															# se mantiene en la misma dirección que en la que se encontraba anteriormente.
 #															# Se implementa:
 #															# ChangeDir(SAME);
 	pass
 
-def p_colocar(p):
-	'''colocar : PLACE BLOCK colocar1'''
-				
-def p_colocar1_1(p):
-	'''colocar1 : SEMICOLON'''								# Definición de la intrucción para colocar 1 bloque en la posición actual
+def p_colocar1(p):
+	'''colocar : PLACE BLOCK SEMICOLON'''					# Definición de la intrucción para colocar 1 bloque en la posición actual
 #															# Se implementa:
 #															# Place Block;
 	global _mat
@@ -195,7 +204,7 @@ def p_colocar1_1(p):
 	_mat[_actualPos[0]][_actualPos[1]][0] = 0 
 				
 def p_colocar1_2(p):
-	'''colocar1 : NUM SEMICOLON'''							# Definición de la intrucción para colocar n bloques en la direccion actual 
+	'''colocar : PLACE BLOCK NUM SEMICOLON''' 				# Definición de la intrucción para colocar n bloques en la direccion actual 
 #															# Se implementa:
 #															# Place Block;
 	global _mat
@@ -205,29 +214,26 @@ def p_colocar1_2(p):
 	print(_actualPos[2])
 	tmp_dict = _switch[_actualPos[2]]
 	print(tmp_dict)
-	for i in range(0,int(p[1])):
+	for i in range(0,int(p[3])):
 		if (_actualPos[0]+i*tmp_dict[0] in range(0,8) and _actualPos[1]+i*tmp_dict[1] in range(0,8)):
 			_mat[_actualPos[0] + i*tmp_dict[0]][_actualPos[1]+i*tmp_dict[1]][0] = 0 
 		else:
 			print("No se pueden colocar más bloque en esta dirección")
-			i = int(p[1])
+			i = int(p[3])
 	
-def p_elevar(p):
-	'''elevar : HIGH BLOCK elevar1'''						
-				
-def p_elevar1_1(p):
-	'''elevar1 : SEMICOLON'''								# Definición de la intruccion para elevar en 1 nivel un bloque, se implementa:
+def p_elevar1(p):
+	'''elevar : HIGH BLOCK SEMICOLON'''						# Definición de la intruccion para elevar en 1 nivel un bloque, se implementa:
 #															# High Block;
 	global _mat
 	global _actualPos
 	_mat[_actualPos[0]][_actualPos[1]][0] = 1
 				
 def p_elevarr1_2(p):
-	'''elevar1 : NUM SEMICOLON'''							# Definición de la intruccion para elevar en n el nivel un bloque, se implementa:
+	'''elevar : HIGH BLOCK NUM SEMICOLON'''					# Definición de la intruccion para elevar en n el nivel un bloque, se implementa:
 #															# High Block NUM
 	global _mat
 	global _actualPos
-	_mat[_actualPos[0]][_actualPos[1]][0] = int(p[1])
+	_mat[_actualPos[0]][_actualPos[1]][0] = int(p[3])
 				
 def p_encender(p):
 	'''encender : PUT LIGHT SEMICOLON'''

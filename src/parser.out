@@ -41,67 +41,64 @@ Rule 22    c_keep -> KEEP expresiones KEND SEMICOLON
 Rule 23    asignar -> SET ID ASSIGN NUM SEMICOLON
 Rule 24    actualizar -> ADD SUM ID SEMICOLON
 Rule 25    actualizar -> LESS SUM ID SEMICOLON
-Rule 26    cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON
-Rule 27    direccion -> LEFT RPAR
-Rule 28    direccion -> RIGHT RPAR
-Rule 29    direccion -> BACK RPAR
-Rule 30    direccion -> SAME RPAR
-Rule 31    colocar -> PLACE BLOCK colocar1
-Rule 32    colocar1 -> SEMICOLON
-Rule 33    colocar1 -> NUM SEMICOLON
-Rule 34    elevar -> HIGH BLOCK elevar1
-Rule 35    elevar1 -> SEMICOLON
-Rule 36    elevar1 -> NUM SEMICOLON
-Rule 37    encender -> PUT LIGHT SEMICOLON
-Rule 38    mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON
-Rule 39    pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-Rule 40    llamar -> CALL ID SEMICOLON
-Rule 41    procedimientos -> PROC ID expresiones ENDPROC SEMICOLON
-Rule 42    procedimientos -> epsilon
-Rule 43    epsilon -> <empty>
+Rule 26    cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON
+Rule 27    cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+Rule 28    cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON
+Rule 29    cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON
+Rule 30    colocar -> PLACE BLOCK SEMICOLON
+Rule 31    colocar -> PLACE BLOCK NUM SEMICOLON
+Rule 32    elevar -> HIGH BLOCK SEMICOLON
+Rule 33    elevar -> HIGH BLOCK NUM SEMICOLON
+Rule 34    encender -> PUT LIGHT SEMICOLON
+Rule 35    mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON
+Rule 36    pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+Rule 37    llamar -> CALL ID SEMICOLON
+Rule 38    procedimientos -> PROC ID expresiones ENDPROC SEMICOLON
+Rule 39    procedimientos -> epsilon
+Rule 40    epsilon -> <empty>
 
 Terminals, with rules where they appear
 
 ADD                  : 24
 ASSIGN               : 3 20 21 23
-BACK                 : 29
+BACK                 : 28
 BEGIN                : 1
-BLOCK                : 31 34
-CALL                 : 40
-CHANGEDIR            : 26
-COMMA                : 38 39
+BLOCK                : 30 31 32 33
+CALL                 : 37
+CHANGEDIR            : 26 27 28 29
+COMMA                : 35 36
 COMMENT              : 18
 END                  : 1
-ENDPROC              : 41
+ENDPROC              : 38
 EOL                  : 
 ESPECIAL             : 
 FEND                 : 20
 FOR                  : 20
-HIGH                 : 34
-ID                   : 3 4 20 21 23 24 25 40 41
+HIGH                 : 32 33
+ID                   : 3 4 20 21 23 24 25 37 38
 KEEP                 : 22
 KEND                 : 22
 LBRA                 : 
 LCBRA                : 
-LEFT                 : 27
+LEFT                 : 26
 LESS                 : 25
-LIGHT                : 37
-LPAR                 : 26 38 39
+LIGHT                : 34
+LPAR                 : 26 27 28 29 35 36
 MATHEXPR             : 
-NUM                  : 3 20 21 23 33 36 38 38 39 39
-PLACE                : 31
-POS                  : 38
-POSSTART             : 39
-PROC                 : 41
-PUT                  : 37
+NUM                  : 3 20 21 23 31 33 35 35 36 36
+PLACE                : 30 31
+POS                  : 35
+POSSTART             : 36
+PROC                 : 38
+PUT                  : 34
 QUOTE                : 
 RBRA                 : 
 RCBRA                : 
 RES                  : 
-RIGHT                : 28
-RPAR                 : 27 28 29 30 38 39
-SAME                 : 30
-SEMICOLON            : 3 4 17 20 21 22 23 24 25 26 32 33 35 36 37 38 39 40 41
+RIGHT                : 27
+RPAR                 : 26 27 28 29 35 36
+SAME                 : 29
+SEMICOLON            : 3 4 17 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38
 SET                  : 23
 SKIP                 : 17
 SUM                  : 24 25
@@ -122,13 +119,10 @@ c_keep               : 14
 c_when               : 16
 cambiar_direccion    : 7
 colocar              : 8
-colocar1             : 31
-direccion            : 26
 elevar               : 9
-elevar1              : 34
 encender             : 10
-epsilon              : 19 42
-expresiones          : 1 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 22 41
+epsilon              : 19 39
+expresiones          : 1 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 22 38
 llamar               : 13
 mover                : 11
 pos_inicio           : 12
@@ -194,17 +188,22 @@ state 4
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -221,7 +220,7 @@ state 4
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
 
     expresiones                    shift and go to state 7
     asignar                        shift and go to state 8
@@ -282,17 +281,22 @@ state 8
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -309,11 +313,11 @@ state 8
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     asignar                        shift and go to state 8
     expresiones                    shift and go to state 39
@@ -351,17 +355,22 @@ state 9
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -378,11 +387,11 @@ state 9
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     actualizar                     shift and go to state 9
     expresiones                    shift and go to state 40
@@ -420,17 +429,22 @@ state 10
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -447,11 +461,11 @@ state 10
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     cambiar_direccion              shift and go to state 10
     expresiones                    shift and go to state 41
@@ -489,17 +503,22 @@ state 11
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -516,11 +535,11 @@ state 11
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     colocar                        shift and go to state 11
     expresiones                    shift and go to state 42
@@ -558,17 +577,22 @@ state 12
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -585,11 +609,11 @@ state 12
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     elevar                         shift and go to state 12
     expresiones                    shift and go to state 43
@@ -627,17 +651,22 @@ state 13
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -654,11 +683,11 @@ state 13
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     encender                       shift and go to state 13
     expresiones                    shift and go to state 44
@@ -696,17 +725,22 @@ state 14
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -723,11 +757,11 @@ state 14
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     mover                          shift and go to state 14
     expresiones                    shift and go to state 45
@@ -765,17 +799,22 @@ state 15
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -792,11 +831,11 @@ state 15
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     pos_inicio                     shift and go to state 15
     expresiones                    shift and go to state 46
@@ -834,17 +873,22 @@ state 16
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -861,11 +905,11 @@ state 16
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     llamar                         shift and go to state 16
     expresiones                    shift and go to state 47
@@ -903,17 +947,22 @@ state 17
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -930,11 +979,11 @@ state 17
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     c_keep                         shift and go to state 17
     expresiones                    shift and go to state 48
@@ -972,17 +1021,22 @@ state 18
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -999,11 +1053,11 @@ state 18
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     c_for                          shift and go to state 18
     expresiones                    shift and go to state 49
@@ -1041,17 +1095,22 @@ state 19
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -1068,11 +1127,11 @@ state 19
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     c_when                         shift and go to state 19
     expresiones                    shift and go to state 50
@@ -1117,17 +1176,22 @@ state 21
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -1144,11 +1208,11 @@ state 21
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     expresiones                    shift and go to state 52
     asignar                        shift and go to state 8
@@ -1199,49 +1263,54 @@ state 25
 
 state 26
 
-    (26) cambiar_direccion -> CHANGEDIR . LPAR direccion SEMICOLON
+    (26) cambiar_direccion -> CHANGEDIR . LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> CHANGEDIR . LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> CHANGEDIR . LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> CHANGEDIR . LPAR SAME RPAR SEMICOLON
 
     LPAR            shift and go to state 56
 
 
 state 27
 
-    (31) colocar -> PLACE . BLOCK colocar1
+    (30) colocar -> PLACE . BLOCK SEMICOLON
+    (31) colocar -> PLACE . BLOCK NUM SEMICOLON
 
     BLOCK           shift and go to state 57
 
 
 state 28
 
-    (34) elevar -> HIGH . BLOCK elevar1
+    (32) elevar -> HIGH . BLOCK SEMICOLON
+    (33) elevar -> HIGH . BLOCK NUM SEMICOLON
 
     BLOCK           shift and go to state 58
 
 
 state 29
 
-    (37) encender -> PUT . LIGHT SEMICOLON
+    (34) encender -> PUT . LIGHT SEMICOLON
 
     LIGHT           shift and go to state 59
 
 
 state 30
 
-    (38) mover -> POS . LPAR NUM COMMA NUM RPAR SEMICOLON
+    (35) mover -> POS . LPAR NUM COMMA NUM RPAR SEMICOLON
 
     LPAR            shift and go to state 60
 
 
 state 31
 
-    (39) pos_inicio -> POSSTART . LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> POSSTART . LPAR NUM COMMA NUM RPAR SEMICOLON
 
     LPAR            shift and go to state 61
 
 
 state 32
 
-    (40) llamar -> CALL . ID SEMICOLON
+    (37) llamar -> CALL . ID SEMICOLON
 
     ID              shift and go to state 62
 
@@ -1267,17 +1336,22 @@ state 33
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -1294,7 +1368,7 @@ state 33
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    KEND            reduce using rule 43 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
 
     expresiones                    shift and go to state 63
     asignar                        shift and go to state 8
@@ -1342,12 +1416,12 @@ state 37
 state 38
 
     (1) programa -> variable BEGIN expresiones END . procedimientos
-    (41) procedimientos -> . PROC ID expresiones ENDPROC SEMICOLON
-    (42) procedimientos -> . epsilon
-    (43) epsilon -> .
+    (38) procedimientos -> . PROC ID expresiones ENDPROC SEMICOLON
+    (39) procedimientos -> . epsilon
+    (40) epsilon -> .
 
     PROC            shift and go to state 68
-    $end            reduce using rule 43 (epsilon -> .)
+    $end            reduce using rule 40 (epsilon -> .)
 
     procedimientos                 shift and go to state 67
     epsilon                        shift and go to state 69
@@ -1505,17 +1579,22 @@ state 51
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -1532,11 +1611,11 @@ state 51
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    END             reduce using rule 43 (epsilon -> .)
-    KEND            reduce using rule 43 (epsilon -> .)
-    ENDPROC         reduce using rule 43 (epsilon -> .)
-    FEND            reduce using rule 43 (epsilon -> .)
-    WHEND           reduce using rule 43 (epsilon -> .)
+    END             reduce using rule 40 (epsilon -> .)
+    KEND            reduce using rule 40 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     expresiones                    shift and go to state 70
     asignar                        shift and go to state 8
@@ -1587,95 +1666,89 @@ state 55
 
 state 56
 
-    (26) cambiar_direccion -> CHANGEDIR LPAR . direccion SEMICOLON
-    (27) direccion -> . LEFT RPAR
-    (28) direccion -> . RIGHT RPAR
-    (29) direccion -> . BACK RPAR
-    (30) direccion -> . SAME RPAR
+    (26) cambiar_direccion -> CHANGEDIR LPAR . LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> CHANGEDIR LPAR . RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> CHANGEDIR LPAR . BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> CHANGEDIR LPAR . SAME RPAR SEMICOLON
 
-    LEFT            shift and go to state 75
-    RIGHT           shift and go to state 76
-    BACK            shift and go to state 77
-    SAME            shift and go to state 78
+    LEFT            shift and go to state 74
+    RIGHT           shift and go to state 75
+    BACK            shift and go to state 76
+    SAME            shift and go to state 77
 
-    direccion                      shift and go to state 74
 
 state 57
 
-    (31) colocar -> PLACE BLOCK . colocar1
-    (32) colocar1 -> . SEMICOLON
-    (33) colocar1 -> . NUM SEMICOLON
+    (30) colocar -> PLACE BLOCK . SEMICOLON
+    (31) colocar -> PLACE BLOCK . NUM SEMICOLON
+
+    SEMICOLON       shift and go to state 78
+    NUM             shift and go to state 79
+
+
+state 58
+
+    (32) elevar -> HIGH BLOCK . SEMICOLON
+    (33) elevar -> HIGH BLOCK . NUM SEMICOLON
 
     SEMICOLON       shift and go to state 80
     NUM             shift and go to state 81
 
-    colocar1                       shift and go to state 79
-
-state 58
-
-    (34) elevar -> HIGH BLOCK . elevar1
-    (35) elevar1 -> . SEMICOLON
-    (36) elevar1 -> . NUM SEMICOLON
-
-    SEMICOLON       shift and go to state 83
-    NUM             shift and go to state 84
-
-    elevar1                        shift and go to state 82
 
 state 59
 
-    (37) encender -> PUT LIGHT . SEMICOLON
+    (34) encender -> PUT LIGHT . SEMICOLON
 
-    SEMICOLON       shift and go to state 85
+    SEMICOLON       shift and go to state 82
 
 
 state 60
 
-    (38) mover -> POS LPAR . NUM COMMA NUM RPAR SEMICOLON
+    (35) mover -> POS LPAR . NUM COMMA NUM RPAR SEMICOLON
 
-    NUM             shift and go to state 86
+    NUM             shift and go to state 83
 
 
 state 61
 
-    (39) pos_inicio -> POSSTART LPAR . NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> POSSTART LPAR . NUM COMMA NUM RPAR SEMICOLON
 
-    NUM             shift and go to state 87
+    NUM             shift and go to state 84
 
 
 state 62
 
-    (40) llamar -> CALL ID . SEMICOLON
+    (37) llamar -> CALL ID . SEMICOLON
 
-    SEMICOLON       shift and go to state 88
+    SEMICOLON       shift and go to state 85
 
 
 state 63
 
     (22) c_keep -> KEEP expresiones . KEND SEMICOLON
 
-    KEND            shift and go to state 89
+    KEND            shift and go to state 86
 
 
 state 64
 
     (20) c_for -> FOR ID . ASSIGN NUM TIMES expresiones FEND SEMICOLON
 
-    ASSIGN          shift and go to state 90
+    ASSIGN          shift and go to state 87
 
 
 state 65
 
     (21) c_when -> WHEN ID . ASSIGN NUM THEN expresiones WHEND SEMICOLON
 
-    ASSIGN          shift and go to state 91
+    ASSIGN          shift and go to state 88
 
 
 state 66
 
     (3) variable1 -> ID ASSIGN NUM . SEMICOLON
 
-    SEMICOLON       shift and go to state 92
+    SEMICOLON       shift and go to state 89
 
 
 state 67
@@ -1687,16 +1760,16 @@ state 67
 
 state 68
 
-    (41) procedimientos -> PROC . ID expresiones ENDPROC SEMICOLON
+    (38) procedimientos -> PROC . ID expresiones ENDPROC SEMICOLON
 
-    ID              shift and go to state 93
+    ID              shift and go to state 90
 
 
 state 69
 
-    (42) procedimientos -> epsilon .
+    (39) procedimientos -> epsilon .
 
-    $end            reduce using rule 42 (procedimientos -> epsilon .)
+    $end            reduce using rule 39 (procedimientos -> epsilon .)
 
 
 state 70
@@ -1714,273 +1787,214 @@ state 71
 
     (23) asignar -> SET ID ASSIGN . NUM SEMICOLON
 
-    NUM             shift and go to state 94
+    NUM             shift and go to state 91
 
 
 state 72
 
     (24) actualizar -> ADD SUM ID . SEMICOLON
 
-    SEMICOLON       shift and go to state 95
+    SEMICOLON       shift and go to state 92
 
 
 state 73
 
     (25) actualizar -> LESS SUM ID . SEMICOLON
 
-    SEMICOLON       shift and go to state 96
+    SEMICOLON       shift and go to state 93
 
 
 state 74
 
-    (26) cambiar_direccion -> CHANGEDIR LPAR direccion . SEMICOLON
+    (26) cambiar_direccion -> CHANGEDIR LPAR LEFT . RPAR SEMICOLON
 
-    SEMICOLON       shift and go to state 97
+    RPAR            shift and go to state 94
 
 
 state 75
 
-    (27) direccion -> LEFT . RPAR
+    (27) cambiar_direccion -> CHANGEDIR LPAR RIGHT . RPAR SEMICOLON
 
-    RPAR            shift and go to state 98
+    RPAR            shift and go to state 95
 
 
 state 76
 
-    (28) direccion -> RIGHT . RPAR
+    (28) cambiar_direccion -> CHANGEDIR LPAR BACK . RPAR SEMICOLON
 
-    RPAR            shift and go to state 99
+    RPAR            shift and go to state 96
 
 
 state 77
 
-    (29) direccion -> BACK . RPAR
+    (29) cambiar_direccion -> CHANGEDIR LPAR SAME . RPAR SEMICOLON
 
-    RPAR            shift and go to state 100
+    RPAR            shift and go to state 97
 
 
 state 78
 
-    (30) direccion -> SAME . RPAR
+    (30) colocar -> PLACE BLOCK SEMICOLON .
 
-    RPAR            shift and go to state 101
+    SKIP            reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    COMMENT         reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    SET             reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    ADD             reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    LESS            reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    CHANGEDIR       reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    PLACE           reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    HIGH            reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    PUT             reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    POS             reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    POSSTART        reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    CALL            reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    KEEP            reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    FOR             reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    WHEN            reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    END             reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    KEND            reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    ENDPROC         reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    FEND            reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
+    WHEND           reduce using rule 30 (colocar -> PLACE BLOCK SEMICOLON .)
 
 
 state 79
 
-    (31) colocar -> PLACE BLOCK colocar1 .
+    (31) colocar -> PLACE BLOCK NUM . SEMICOLON
 
-    SKIP            reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    COMMENT         reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    SET             reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    ADD             reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    LESS            reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    CHANGEDIR       reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    PLACE           reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    HIGH            reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    PUT             reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    POS             reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    POSSTART        reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    CALL            reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    KEEP            reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    FOR             reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    WHEN            reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    END             reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    KEND            reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    ENDPROC         reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    FEND            reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
-    WHEND           reduce using rule 31 (colocar -> PLACE BLOCK colocar1 .)
+    SEMICOLON       shift and go to state 98
 
 
 state 80
 
-    (32) colocar1 -> SEMICOLON .
+    (32) elevar -> HIGH BLOCK SEMICOLON .
 
-    SKIP            reduce using rule 32 (colocar1 -> SEMICOLON .)
-    COMMENT         reduce using rule 32 (colocar1 -> SEMICOLON .)
-    SET             reduce using rule 32 (colocar1 -> SEMICOLON .)
-    ADD             reduce using rule 32 (colocar1 -> SEMICOLON .)
-    LESS            reduce using rule 32 (colocar1 -> SEMICOLON .)
-    CHANGEDIR       reduce using rule 32 (colocar1 -> SEMICOLON .)
-    PLACE           reduce using rule 32 (colocar1 -> SEMICOLON .)
-    HIGH            reduce using rule 32 (colocar1 -> SEMICOLON .)
-    PUT             reduce using rule 32 (colocar1 -> SEMICOLON .)
-    POS             reduce using rule 32 (colocar1 -> SEMICOLON .)
-    POSSTART        reduce using rule 32 (colocar1 -> SEMICOLON .)
-    CALL            reduce using rule 32 (colocar1 -> SEMICOLON .)
-    KEEP            reduce using rule 32 (colocar1 -> SEMICOLON .)
-    FOR             reduce using rule 32 (colocar1 -> SEMICOLON .)
-    WHEN            reduce using rule 32 (colocar1 -> SEMICOLON .)
-    END             reduce using rule 32 (colocar1 -> SEMICOLON .)
-    KEND            reduce using rule 32 (colocar1 -> SEMICOLON .)
-    ENDPROC         reduce using rule 32 (colocar1 -> SEMICOLON .)
-    FEND            reduce using rule 32 (colocar1 -> SEMICOLON .)
-    WHEND           reduce using rule 32 (colocar1 -> SEMICOLON .)
+    SKIP            reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    COMMENT         reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    SET             reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    ADD             reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    LESS            reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    CHANGEDIR       reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    PLACE           reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    HIGH            reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    PUT             reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    POS             reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    POSSTART        reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    CALL            reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    KEEP            reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    FOR             reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    WHEN            reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    END             reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    KEND            reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    ENDPROC         reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    FEND            reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
+    WHEND           reduce using rule 32 (elevar -> HIGH BLOCK SEMICOLON .)
 
 
 state 81
 
-    (33) colocar1 -> NUM . SEMICOLON
+    (33) elevar -> HIGH BLOCK NUM . SEMICOLON
 
-    SEMICOLON       shift and go to state 102
+    SEMICOLON       shift and go to state 99
 
 
 state 82
 
-    (34) elevar -> HIGH BLOCK elevar1 .
+    (34) encender -> PUT LIGHT SEMICOLON .
 
-    SKIP            reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    COMMENT         reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    SET             reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    ADD             reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    LESS            reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    CHANGEDIR       reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    PLACE           reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    HIGH            reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    PUT             reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    POS             reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    POSSTART        reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    CALL            reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    KEEP            reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    FOR             reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    WHEN            reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    END             reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    KEND            reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    ENDPROC         reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    FEND            reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
-    WHEND           reduce using rule 34 (elevar -> HIGH BLOCK elevar1 .)
+    SKIP            reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    COMMENT         reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    SET             reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    ADD             reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    LESS            reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    CHANGEDIR       reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    PLACE           reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    HIGH            reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    PUT             reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    POS             reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    POSSTART        reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    CALL            reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    KEEP            reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    FOR             reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    WHEN            reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    END             reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    KEND            reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    ENDPROC         reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    FEND            reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
+    WHEND           reduce using rule 34 (encender -> PUT LIGHT SEMICOLON .)
 
 
 state 83
 
-    (35) elevar1 -> SEMICOLON .
+    (35) mover -> POS LPAR NUM . COMMA NUM RPAR SEMICOLON
 
-    SKIP            reduce using rule 35 (elevar1 -> SEMICOLON .)
-    COMMENT         reduce using rule 35 (elevar1 -> SEMICOLON .)
-    SET             reduce using rule 35 (elevar1 -> SEMICOLON .)
-    ADD             reduce using rule 35 (elevar1 -> SEMICOLON .)
-    LESS            reduce using rule 35 (elevar1 -> SEMICOLON .)
-    CHANGEDIR       reduce using rule 35 (elevar1 -> SEMICOLON .)
-    PLACE           reduce using rule 35 (elevar1 -> SEMICOLON .)
-    HIGH            reduce using rule 35 (elevar1 -> SEMICOLON .)
-    PUT             reduce using rule 35 (elevar1 -> SEMICOLON .)
-    POS             reduce using rule 35 (elevar1 -> SEMICOLON .)
-    POSSTART        reduce using rule 35 (elevar1 -> SEMICOLON .)
-    CALL            reduce using rule 35 (elevar1 -> SEMICOLON .)
-    KEEP            reduce using rule 35 (elevar1 -> SEMICOLON .)
-    FOR             reduce using rule 35 (elevar1 -> SEMICOLON .)
-    WHEN            reduce using rule 35 (elevar1 -> SEMICOLON .)
-    END             reduce using rule 35 (elevar1 -> SEMICOLON .)
-    KEND            reduce using rule 35 (elevar1 -> SEMICOLON .)
-    ENDPROC         reduce using rule 35 (elevar1 -> SEMICOLON .)
-    FEND            reduce using rule 35 (elevar1 -> SEMICOLON .)
-    WHEND           reduce using rule 35 (elevar1 -> SEMICOLON .)
+    COMMA           shift and go to state 100
 
 
 state 84
 
-    (36) elevar1 -> NUM . SEMICOLON
+    (36) pos_inicio -> POSSTART LPAR NUM . COMMA NUM RPAR SEMICOLON
 
-    SEMICOLON       shift and go to state 103
+    COMMA           shift and go to state 101
 
 
 state 85
 
-    (37) encender -> PUT LIGHT SEMICOLON .
+    (37) llamar -> CALL ID SEMICOLON .
 
-    SKIP            reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    COMMENT         reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    SET             reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    ADD             reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    LESS            reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    CHANGEDIR       reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    PLACE           reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    HIGH            reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    PUT             reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    POS             reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    POSSTART        reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    CALL            reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    KEEP            reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    FOR             reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    WHEN            reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    END             reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    KEND            reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    ENDPROC         reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    FEND            reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
-    WHEND           reduce using rule 37 (encender -> PUT LIGHT SEMICOLON .)
+    SKIP            reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    COMMENT         reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    SET             reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    ADD             reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    LESS            reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    CHANGEDIR       reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    PLACE           reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    HIGH            reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    PUT             reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    POS             reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    POSSTART        reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    CALL            reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    KEEP            reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    FOR             reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    WHEN            reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    END             reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    KEND            reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    ENDPROC         reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    FEND            reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
+    WHEND           reduce using rule 37 (llamar -> CALL ID SEMICOLON .)
 
 
 state 86
 
-    (38) mover -> POS LPAR NUM . COMMA NUM RPAR SEMICOLON
+    (22) c_keep -> KEEP expresiones KEND . SEMICOLON
 
-    COMMA           shift and go to state 104
+    SEMICOLON       shift and go to state 102
 
 
 state 87
 
-    (39) pos_inicio -> POSSTART LPAR NUM . COMMA NUM RPAR SEMICOLON
+    (20) c_for -> FOR ID ASSIGN . NUM TIMES expresiones FEND SEMICOLON
 
-    COMMA           shift and go to state 105
+    NUM             shift and go to state 103
 
 
 state 88
 
-    (40) llamar -> CALL ID SEMICOLON .
+    (21) c_when -> WHEN ID ASSIGN . NUM THEN expresiones WHEND SEMICOLON
 
-    SKIP            reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    COMMENT         reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    SET             reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    ADD             reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    LESS            reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    CHANGEDIR       reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    PLACE           reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    HIGH            reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    PUT             reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    POS             reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    POSSTART        reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    CALL            reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    KEEP            reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    FOR             reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    WHEN            reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    END             reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    KEND            reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    ENDPROC         reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    FEND            reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
-    WHEND           reduce using rule 40 (llamar -> CALL ID SEMICOLON .)
+    NUM             shift and go to state 104
 
 
 state 89
-
-    (22) c_keep -> KEEP expresiones KEND . SEMICOLON
-
-    SEMICOLON       shift and go to state 106
-
-
-state 90
-
-    (20) c_for -> FOR ID ASSIGN . NUM TIMES expresiones FEND SEMICOLON
-
-    NUM             shift and go to state 107
-
-
-state 91
-
-    (21) c_when -> WHEN ID ASSIGN . NUM THEN expresiones WHEND SEMICOLON
-
-    NUM             shift and go to state 108
-
-
-state 92
 
     (3) variable1 -> ID ASSIGN NUM SEMICOLON .
 
     BEGIN           reduce using rule 3 (variable1 -> ID ASSIGN NUM SEMICOLON .)
 
 
-state 93
+state 90
 
-    (41) procedimientos -> PROC ID . expresiones ENDPROC SEMICOLON
+    (38) procedimientos -> PROC ID . expresiones ENDPROC SEMICOLON
     (5) expresiones -> . asignar expresiones
     (6) expresiones -> . actualizar expresiones
     (7) expresiones -> . cambiar_direccion expresiones
@@ -1999,17 +2013,22 @@ state 93
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -2026,9 +2045,9 @@ state 93
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    ENDPROC         reduce using rule 43 (epsilon -> .)
+    ENDPROC         reduce using rule 40 (epsilon -> .)
 
-    expresiones                    shift and go to state 109
+    expresiones                    shift and go to state 105
     asignar                        shift and go to state 8
     actualizar                     shift and go to state 9
     cambiar_direccion              shift and go to state 10
@@ -2043,14 +2062,14 @@ state 93
     c_when                         shift and go to state 19
     epsilon                        shift and go to state 22
 
-state 94
+state 91
 
     (23) asignar -> SET ID ASSIGN NUM . SEMICOLON
 
-    SEMICOLON       shift and go to state 110
+    SEMICOLON       shift and go to state 106
 
 
-state 95
+state 92
 
     (24) actualizar -> ADD SUM ID SEMICOLON .
 
@@ -2076,7 +2095,7 @@ state 95
     WHEND           reduce using rule 24 (actualizar -> ADD SUM ID SEMICOLON .)
 
 
-state 96
+state 93
 
     (25) actualizar -> LESS SUM ID SEMICOLON .
 
@@ -2102,127 +2121,101 @@ state 96
     WHEND           reduce using rule 25 (actualizar -> LESS SUM ID SEMICOLON .)
 
 
+state 94
+
+    (26) cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR . SEMICOLON
+
+    SEMICOLON       shift and go to state 107
+
+
+state 95
+
+    (27) cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR . SEMICOLON
+
+    SEMICOLON       shift and go to state 108
+
+
+state 96
+
+    (28) cambiar_direccion -> CHANGEDIR LPAR BACK RPAR . SEMICOLON
+
+    SEMICOLON       shift and go to state 109
+
+
 state 97
 
-    (26) cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .
+    (29) cambiar_direccion -> CHANGEDIR LPAR SAME RPAR . SEMICOLON
 
-    SKIP            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    COMMENT         reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    SET             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    ADD             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    LESS            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    CHANGEDIR       reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    PLACE           reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    HIGH            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    PUT             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    POS             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    POSSTART        reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    CALL            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    KEEP            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    FOR             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    WHEN            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    END             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    KEND            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    ENDPROC         reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    FEND            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
-    WHEND           reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR direccion SEMICOLON .)
+    SEMICOLON       shift and go to state 110
 
 
 state 98
 
-    (27) direccion -> LEFT RPAR .
+    (31) colocar -> PLACE BLOCK NUM SEMICOLON .
 
-    SEMICOLON       reduce using rule 27 (direccion -> LEFT RPAR .)
+    SKIP            reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    COMMENT         reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    SET             reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    ADD             reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    LESS            reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    CHANGEDIR       reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    PLACE           reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    HIGH            reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    PUT             reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    POS             reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    POSSTART        reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    CALL            reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    KEEP            reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    FOR             reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    WHEN            reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    END             reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    KEND            reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    ENDPROC         reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    FEND            reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
+    WHEND           reduce using rule 31 (colocar -> PLACE BLOCK NUM SEMICOLON .)
 
 
 state 99
 
-    (28) direccion -> RIGHT RPAR .
+    (33) elevar -> HIGH BLOCK NUM SEMICOLON .
 
-    SEMICOLON       reduce using rule 28 (direccion -> RIGHT RPAR .)
+    SKIP            reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    COMMENT         reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    SET             reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    ADD             reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    LESS            reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    CHANGEDIR       reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    PLACE           reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    HIGH            reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    PUT             reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    POS             reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    POSSTART        reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    CALL            reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    KEEP            reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    FOR             reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    WHEN            reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    END             reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    KEND            reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    ENDPROC         reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    FEND            reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
+    WHEND           reduce using rule 33 (elevar -> HIGH BLOCK NUM SEMICOLON .)
 
 
 state 100
 
-    (29) direccion -> BACK RPAR .
-
-    SEMICOLON       reduce using rule 29 (direccion -> BACK RPAR .)
-
-
-state 101
-
-    (30) direccion -> SAME RPAR .
-
-    SEMICOLON       reduce using rule 30 (direccion -> SAME RPAR .)
-
-
-state 102
-
-    (33) colocar1 -> NUM SEMICOLON .
-
-    SKIP            reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    COMMENT         reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    SET             reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    ADD             reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    LESS            reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    CHANGEDIR       reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    PLACE           reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    HIGH            reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    PUT             reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    POS             reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    POSSTART        reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    CALL            reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    KEEP            reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    FOR             reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    WHEN            reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    END             reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    KEND            reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    ENDPROC         reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    FEND            reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-    WHEND           reduce using rule 33 (colocar1 -> NUM SEMICOLON .)
-
-
-state 103
-
-    (36) elevar1 -> NUM SEMICOLON .
-
-    SKIP            reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    COMMENT         reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    SET             reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    ADD             reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    LESS            reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    CHANGEDIR       reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    PLACE           reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    HIGH            reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    PUT             reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    POS             reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    POSSTART        reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    CALL            reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    KEEP            reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    FOR             reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    WHEN            reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    END             reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    KEND            reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    ENDPROC         reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    FEND            reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-    WHEND           reduce using rule 36 (elevar1 -> NUM SEMICOLON .)
-
-
-state 104
-
-    (38) mover -> POS LPAR NUM COMMA . NUM RPAR SEMICOLON
+    (35) mover -> POS LPAR NUM COMMA . NUM RPAR SEMICOLON
 
     NUM             shift and go to state 111
 
 
-state 105
+state 101
 
-    (39) pos_inicio -> POSSTART LPAR NUM COMMA . NUM RPAR SEMICOLON
+    (36) pos_inicio -> POSSTART LPAR NUM COMMA . NUM RPAR SEMICOLON
 
     NUM             shift and go to state 112
 
 
-state 106
+state 102
 
     (22) c_keep -> KEEP expresiones KEND SEMICOLON .
 
@@ -2248,28 +2241,28 @@ state 106
     WHEND           reduce using rule 22 (c_keep -> KEEP expresiones KEND SEMICOLON .)
 
 
-state 107
+state 103
 
     (20) c_for -> FOR ID ASSIGN NUM . TIMES expresiones FEND SEMICOLON
 
     TIMES           shift and go to state 113
 
 
-state 108
+state 104
 
     (21) c_when -> WHEN ID ASSIGN NUM . THEN expresiones WHEND SEMICOLON
 
     THEN            shift and go to state 114
 
 
-state 109
+state 105
 
-    (41) procedimientos -> PROC ID expresiones . ENDPROC SEMICOLON
+    (38) procedimientos -> PROC ID expresiones . ENDPROC SEMICOLON
 
     ENDPROC         shift and go to state 115
 
 
-state 110
+state 106
 
     (23) asignar -> SET ID ASSIGN NUM SEMICOLON .
 
@@ -2295,16 +2288,120 @@ state 110
     WHEND           reduce using rule 23 (asignar -> SET ID ASSIGN NUM SEMICOLON .)
 
 
+state 107
+
+    (26) cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .
+
+    SKIP            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    COMMENT         reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    SET             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    ADD             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    LESS            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    CHANGEDIR       reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    PLACE           reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    HIGH            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    PUT             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    POS             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    POSSTART        reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    CALL            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    KEEP            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    FOR             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    WHEN            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    END             reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    KEND            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    ENDPROC         reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    FEND            reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+    WHEND           reduce using rule 26 (cambiar_direccion -> CHANGEDIR LPAR LEFT RPAR SEMICOLON .)
+
+
+state 108
+
+    (27) cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .
+
+    SKIP            reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    COMMENT         reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    SET             reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    ADD             reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    LESS            reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    CHANGEDIR       reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    PLACE           reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    HIGH            reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    PUT             reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    POS             reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    POSSTART        reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    CALL            reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    KEEP            reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    FOR             reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    WHEN            reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    END             reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    KEND            reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    ENDPROC         reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    FEND            reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+    WHEND           reduce using rule 27 (cambiar_direccion -> CHANGEDIR LPAR RIGHT RPAR SEMICOLON .)
+
+
+state 109
+
+    (28) cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .
+
+    SKIP            reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    COMMENT         reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    SET             reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    ADD             reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    LESS            reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    CHANGEDIR       reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    PLACE           reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    HIGH            reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    PUT             reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    POS             reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    POSSTART        reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    CALL            reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    KEEP            reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    FOR             reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    WHEN            reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    END             reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    KEND            reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    ENDPROC         reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    FEND            reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+    WHEND           reduce using rule 28 (cambiar_direccion -> CHANGEDIR LPAR BACK RPAR SEMICOLON .)
+
+
+state 110
+
+    (29) cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .
+
+    SKIP            reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    COMMENT         reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    SET             reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    ADD             reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    LESS            reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    CHANGEDIR       reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    PLACE           reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    HIGH            reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    PUT             reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    POS             reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    POSSTART        reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    CALL            reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    KEEP            reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    FOR             reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    WHEN            reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    END             reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    KEND            reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    ENDPROC         reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    FEND            reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+    WHEND           reduce using rule 29 (cambiar_direccion -> CHANGEDIR LPAR SAME RPAR SEMICOLON .)
+
+
 state 111
 
-    (38) mover -> POS LPAR NUM COMMA NUM . RPAR SEMICOLON
+    (35) mover -> POS LPAR NUM COMMA NUM . RPAR SEMICOLON
 
     RPAR            shift and go to state 116
 
 
 state 112
 
-    (39) pos_inicio -> POSSTART LPAR NUM COMMA NUM . RPAR SEMICOLON
+    (36) pos_inicio -> POSSTART LPAR NUM COMMA NUM . RPAR SEMICOLON
 
     RPAR            shift and go to state 117
 
@@ -2330,17 +2427,22 @@ state 113
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -2357,7 +2459,7 @@ state 113
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    FEND            reduce using rule 43 (epsilon -> .)
+    FEND            reduce using rule 40 (epsilon -> .)
 
     expresiones                    shift and go to state 118
     asignar                        shift and go to state 8
@@ -2395,17 +2497,22 @@ state 114
     (23) asignar -> . SET ID ASSIGN NUM SEMICOLON
     (24) actualizar -> . ADD SUM ID SEMICOLON
     (25) actualizar -> . LESS SUM ID SEMICOLON
-    (26) cambiar_direccion -> . CHANGEDIR LPAR direccion SEMICOLON
-    (31) colocar -> . PLACE BLOCK colocar1
-    (34) elevar -> . HIGH BLOCK elevar1
-    (37) encender -> . PUT LIGHT SEMICOLON
-    (38) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
-    (39) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
-    (40) llamar -> . CALL ID SEMICOLON
+    (26) cambiar_direccion -> . CHANGEDIR LPAR LEFT RPAR SEMICOLON
+    (27) cambiar_direccion -> . CHANGEDIR LPAR RIGHT RPAR SEMICOLON
+    (28) cambiar_direccion -> . CHANGEDIR LPAR BACK RPAR SEMICOLON
+    (29) cambiar_direccion -> . CHANGEDIR LPAR SAME RPAR SEMICOLON
+    (30) colocar -> . PLACE BLOCK SEMICOLON
+    (31) colocar -> . PLACE BLOCK NUM SEMICOLON
+    (32) elevar -> . HIGH BLOCK SEMICOLON
+    (33) elevar -> . HIGH BLOCK NUM SEMICOLON
+    (34) encender -> . PUT LIGHT SEMICOLON
+    (35) mover -> . POS LPAR NUM COMMA NUM RPAR SEMICOLON
+    (36) pos_inicio -> . POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON
+    (37) llamar -> . CALL ID SEMICOLON
     (22) c_keep -> . KEEP expresiones KEND SEMICOLON
     (20) c_for -> . FOR ID ASSIGN NUM TIMES expresiones FEND SEMICOLON
     (21) c_when -> . WHEN ID ASSIGN NUM THEN expresiones WHEND SEMICOLON
-    (43) epsilon -> .
+    (40) epsilon -> .
 
     SKIP            shift and go to state 20
     COMMENT         shift and go to state 21
@@ -2422,7 +2529,7 @@ state 114
     KEEP            shift and go to state 33
     FOR             shift and go to state 34
     WHEN            shift and go to state 35
-    WHEND           reduce using rule 43 (epsilon -> .)
+    WHEND           reduce using rule 40 (epsilon -> .)
 
     expresiones                    shift and go to state 119
     asignar                        shift and go to state 8
@@ -2441,21 +2548,21 @@ state 114
 
 state 115
 
-    (41) procedimientos -> PROC ID expresiones ENDPROC . SEMICOLON
+    (38) procedimientos -> PROC ID expresiones ENDPROC . SEMICOLON
 
     SEMICOLON       shift and go to state 120
 
 
 state 116
 
-    (38) mover -> POS LPAR NUM COMMA NUM RPAR . SEMICOLON
+    (35) mover -> POS LPAR NUM COMMA NUM RPAR . SEMICOLON
 
     SEMICOLON       shift and go to state 121
 
 
 state 117
 
-    (39) pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR . SEMICOLON
+    (36) pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR . SEMICOLON
 
     SEMICOLON       shift and go to state 122
 
@@ -2476,61 +2583,61 @@ state 119
 
 state 120
 
-    (41) procedimientos -> PROC ID expresiones ENDPROC SEMICOLON .
+    (38) procedimientos -> PROC ID expresiones ENDPROC SEMICOLON .
 
-    $end            reduce using rule 41 (procedimientos -> PROC ID expresiones ENDPROC SEMICOLON .)
+    $end            reduce using rule 38 (procedimientos -> PROC ID expresiones ENDPROC SEMICOLON .)
 
 
 state 121
 
-    (38) mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .
+    (35) mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .
 
-    SKIP            reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    COMMENT         reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    SET             reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    ADD             reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    LESS            reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    CHANGEDIR       reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    PLACE           reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    HIGH            reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    PUT             reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    POS             reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    POSSTART        reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    CALL            reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    KEEP            reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    FOR             reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    WHEN            reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    END             reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    KEND            reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    ENDPROC         reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    FEND            reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    WHEND           reduce using rule 38 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    SKIP            reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    COMMENT         reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    SET             reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    ADD             reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    LESS            reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    CHANGEDIR       reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    PLACE           reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    HIGH            reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    PUT             reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    POS             reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    POSSTART        reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    CALL            reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    KEEP            reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    FOR             reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    WHEN            reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    END             reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    KEND            reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    ENDPROC         reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    FEND            reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    WHEND           reduce using rule 35 (mover -> POS LPAR NUM COMMA NUM RPAR SEMICOLON .)
 
 
 state 122
 
-    (39) pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .
+    (36) pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .
 
-    SKIP            reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    COMMENT         reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    SET             reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    ADD             reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    LESS            reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    CHANGEDIR       reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    PLACE           reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    HIGH            reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    PUT             reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    POS             reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    POSSTART        reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    CALL            reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    KEEP            reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    FOR             reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    WHEN            reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    END             reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    KEND            reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    ENDPROC         reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    FEND            reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
-    WHEND           reduce using rule 39 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    SKIP            reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    COMMENT         reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    SET             reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    ADD             reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    LESS            reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    CHANGEDIR       reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    PLACE           reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    HIGH            reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    PUT             reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    POS             reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    POSSTART        reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    CALL            reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    KEEP            reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    FOR             reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    WHEN            reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    END             reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    KEND            reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    ENDPROC         reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    FEND            reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
+    WHEND           reduce using rule 36 (pos_inicio -> POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON .)
 
 
 state 123

@@ -22,3 +22,10 @@ _SWITCH = {
             2:[1,0],
 			3:[-1,0]
 		}
+
+global _PASADA
+_PASADA = False
+
+
+global _LINENO
+_LINENO = 0

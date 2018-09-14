@@ -6,6 +6,7 @@ import re
 from globalVar import _MAT as _mat
 from globalVar import printMat
 from globalVar import _VARIABLES as _variables
+from globalVar import _PASADA as _pasada
 
 def main(route):
     file = ""
@@ -26,10 +27,15 @@ def main(route):
             _mat[i] += [[8,False]]
 
     analisisSintantico(file)
+    global _pasada
+    _pasada = not _pasada
+    print()
+    print(_pasada)
+    print()
     global _variables
     #printMat()
     #print (_variables)
 
     return 1                                                                        # Análisis realizado correctamente
 
-main("prueba2.LBcc.txt")
+main('prueba2.LBcc.txt')
