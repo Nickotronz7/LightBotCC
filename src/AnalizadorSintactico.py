@@ -2,6 +2,7 @@ import ply.yacc as yacc
 import os
 import codecs
 import re
+<<<<<<< HEAD
 
 from main_Lex import tokens
 from sys import stdin
@@ -269,3 +270,4 @@ def p_error(p):
 def analisisSintantico(txt):
 	parser = yacc.yacc()
 	parser.parse(txt)
+	
