@@ -2,7 +2,6 @@ import ply.yacc as yacc
 import os
 import codecs
 import re
-<<<<<<< HEAD
 
 from main_Lex import tokens
 from sys import stdin
@@ -123,7 +122,7 @@ def p_cicloFor(p):
 #															# Donde expresiones representa un no-terminal.
 
 def p_endCicloFor(p):
-	'''expresiones: FEND SEMICOLON expresiones '''
+	'''expresiones : FEND SEMICOLON expresiones '''
 
 def p_cicloWhen(p):
 	'''c_when : WHEN ID ASSIGN NUM THEN '''
@@ -131,7 +130,7 @@ def p_cicloWhen(p):
 #															# When foo = NUM Then expresiones Whend;
 
 def p_endCicloWhen(p):
-	'''expresiones: WHEND SEMICOLON expresiones'''
+	'''expresiones : WHEND SEMICOLON expresiones'''
 
 def p_cicloKeep(p):
 	'''c_keep : KEEP'''										# Definicion explicita del ciclo Keep, se define de la forma:
@@ -140,7 +139,7 @@ def p_cicloKeep(p):
 #															# de las expresiones.
 
 def p_endCicloKeep(p):
-	'''expresiones: KEND SEMICOLON expresiones'''
+	'''expresiones : KEND SEMICOLON expresiones'''
 
 def p_asignar(p):
 	'''asignar : SET ID ASSIGN NUM SEMICOLON'''				# Definición explícita para asignar valor a una variable, se utiliza:
