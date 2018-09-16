@@ -24,8 +24,13 @@ _SWITCH = {
 		}
 
 global _PASADA
-_PASADA = False
+_PASADA = True
 
+global _PROC
+_PROC = {}
 
-global _LINENO
-_LINENO = 0
+global _EXPRESIONES
+_EXPRESIONES = []
+
+global _keep
+_keep = [0]

@@ -22,11 +22,12 @@ from globalVar import _POSSTART as _posStart
 from globalVar import _VARIABLES as _variables
 from globalVar import _SWITCH as _switch
 from globalVar import printMat
+from globalVar import _PROC as _proc
+from globalVar import _PASADA as _pasada
+from globalVar import _EXPRESIONES as _expresiones
 
-global procedimientos
-
-procedimientos = ""
-
+global _inside_proc
+_inside_proc = [False, ""]
 #####################################################################################
 #                  		Definición de una gramática libre.			                #
 # Se define una gramática libre de contexto que define la estructura general del un #
@@ -39,24 +40,35 @@ procedimientos = ""
 # principales, estas son la definición de variables, expresiones y la sección de 
 # procedimientos.
 def p_programa(p):
-	'''programa : variable BEGIN expresiones END procedimientos'''
-	global procedimientos
-	print(p[0])
+	'''programa : variable begin expresiones end procedimientos'''
+	global _pasada
+	_pasada = False
+
+def p_begin(p):
+	'''begin : BEGIN'''
+
+def p_end(p):
+	'''end : END'''
 
 def p_variable(p):
-	'''variable : VAR variable1'''
-	p[0] = ('VAR', 1)							# Estructura principal de una definición de variable
+	'''variable : variable1 var1'''
+															# Estructura principal de una definición de variable
+def p_var1(p):
+	'''var1 : variable1 variable'''
+def p_var1_2(p):
+	'''var1 : epsilon'''
 
 def p_variable1(p):
-	'''variable1 : ID ASSIGN NUM SEMICOLON'''				# Primera forma de definir una variable, se define de la forma:
+	'''variable1 : VAR ID ASSIGN NUM SEMICOLON'''				# Primera forma de definir una variable, se define de la forma:
 #															# Var foo = NUM;
+	
 	global _variables
-	_variables[p[1]] = int(p[3])							# Añade al diccionario de variables el nombre de la variable y 
+	_variables[p[2]] = int(p[4])						# Añade al diccionario de variables el nombre de la variable y 
 #															# luego coloca el valor numérico de la variable en el diccionario
 #															# en el índice correspondiente.
 
 def p_variable1_1(p):
-	'''variable1 : ID SEMICOLON'''							# Segunda forma de definir una variable, se define de la forma:
+	'''variable1 : VAR ID SEMICOLON'''							# Segunda forma de definir una variable, se define de la forma:
 #															# Var foo;
 	global _variables
 	_variables[p[1]] = -1									# Añade al diccionario de variables el nombre de la variable y 
@@ -107,10 +119,30 @@ def p_expresiones12(p):
 	'''expresiones : c_when expresiones '''					# Expresión no terminal querealiza la verificación When.
 
 def p_expresiones13(p):
-	'''expresiones : SKIP SEMICOLON expresiones'''			# Expresión que termina el ciclo Keep.
+	'''expresiones : skip expresiones'''				# Expresión que termina el ciclo Keep.
+
+def p_skip(p):
+	'''skip : SKIP SEMICOLON'''
+	if (addTo(p)):
+		pass
 	
 def p_expresiones14(p):
 	'''expresiones  : COMMENT expresiones'''				# Expresión que incluye los comentarios dentro de la gramática.
+
+def p_expresiones15(p):
+	'''expresiones : endproc procedimientos'''
+
+def p_endproc(p):
+	'''endproc : ENDPROC SEMICOLON'''
+	
+	global _inside_proc
+	if (_inside_proc[0]):
+		_inside_proc[0] = False
+	else:
+		print("Error, no se ha declarado un procedimiento correspondiente " + _inside_proc[1])
+
+def p_expresiones16(p):
+	'''expresiones : whend expresiones '''
 
 def p_expresionesEpsilon(p):
 	'''expresiones : epsilon'''								# Definición de la producción hilera vacía.
@@ -120,55 +152,72 @@ def p_cicloFor(p):
 #															# Definición explícita de un ciclo For, se  define:
 #															# For foo = NUM Times expresiones Fend;
 #															# Donde expresiones representa un no-terminal.
+	addTo(p)
+
+def p_expresiones18(p):
+	'''expresiones : fend expresiones'''
 
 def p_endCicloFor(p):
-	'''expresiones : FEND SEMICOLON expresiones '''
+	'''fend : FEND SEMICOLON '''
+	addTo(p)
 
 def p_cicloWhen(p):
 	'''c_when : WHEN ID ASSIGN NUM THEN '''
 #															# Definicion explicita de una comparacion del tipo When, se define:
 #															# When foo = NUM Then expresiones Whend;
+	addTo(p)
 
 def p_endCicloWhen(p):
-	'''expresiones : WHEND SEMICOLON expresiones'''
-
+	'''whend : WHEND SEMICOLON'''
+	addTo(p)
+		
 def p_cicloKeep(p):
 	'''c_keep : KEEP'''										# Definicion explicita del ciclo Keep, se define de la forma:
 #															# Keep expresiones Kend;
 #															# Donde el ciclo se detiene solamente si encuentra el valor Skip dentro
 #															# de las expresiones.
+	addTo(p)
+
+def p_expresiones17(p):
+	'''expresiones : kend expresiones'''
 
 def p_endCicloKeep(p):
-	'''expresiones : KEND SEMICOLON expresiones'''
-
+	'''kend : KEND SEMICOLON'''
+	if (addTo(p)):
+		pass
+		
 def p_asignar(p):
 	'''asignar : SET ID ASSIGN NUM SEMICOLON'''				# Definición explícita para asignar valor a una variable, se utiliza:
 #															# Set foo = NUM;
-	global _variables
-	try:
-		_variables[p[2]] = int(p[4])
-	except:
-		print("Variable " + p[2] + " no se encuentra definida con anterioridad.")
-	
+	if (addTo(p)):
+		global _variables
+		try:
+			_variables[p[2]] = int(p[4])
+		except:
+			print("Variable " + p[2] + " no se encuentra definida con anterioridad.")
+		
 def p_actualizar(p):
 	'''actualizar : ADD SUM ID SEMICOLON'''					# Definició explícita para aumentar en 1 una variable, se utiliza:
 #															# Add+foo;
-	global _variables
-	_variables[p[2]] +=1
+	if (addTo(p)):
+		global _variables
+		_variables[p[3]] +=1
 		
 def p_actualizar_1(p):
 	'''actualizar : LESS SUM ID SEMICOLON'''				# Definición explícita para disminuir en 1 una variable, se utiliza:
 #															# Less+foo;
-	global _variables
-	_variables[p[2]] -=1
+	if (addTo(p)):
+		global _variables
+		_variables[p[3]] -=1
 		
 def p_cambiar_direccion1(p):
 	'''cambiar_direccion : CHANGEDIR LPAR LEFT RPAR SEMICOLON'''								
 #															# Actualiza el valor de la dirección en  que se colocan los bloques,
 #															# rota hacia la izquierda relativa al frente actual. Se implementa:
 #															# ChangeDir(LEFT);
-	global _actualPos
-	_actualPos[2] = (_actualPos - 1 )%4
+	if (addTo(p)):
+		global _actualPos
+		_actualPos[2] = (_actualPos[2] - 1 )%4
 			
 				
 def p_cambiar_direccion2(p):
@@ -176,16 +225,18 @@ def p_cambiar_direccion2(p):
 #															# Actualiza el valor de la dirección en que se colocan los bloques,
 #															# rota hacia la derecha relativa al frente actual. Se implementa:
 #															# ChangeDir(RIGHT);
-	global _actualPos
-	_actualPos[2] = (_actualPos + 1 )%4
+	if (addTo(p)):
+		global _actualPos
+		_actualPos[2] = (_actualPos[2] + 1 )%4
 				
 def p_cambiar_direccion3(p):
 	'''cambiar_direccion : CHANGEDIR LPAR BACK RPAR SEMICOLON'''
 #															# Actualiza el valor de la dirección en que se colocan los bloques,
 #															# invierte la dirección relativa al frente actual. Se implementa:
 #															# ChangeDir(BACK);
-	global _actualPos
-	_actualPos[2] = (_actualPos + 2 )%4
+	if (addTo(p)):
+		global _actualPos
+		_actualPos[2] = (_actualPos[2] + 2 )%4
 				
 def p_cambiar_direccion4(p):
 	'''cambiar_direccion : CHANGEDIR LPAR SAME RPAR SEMICOLON'''
@@ -193,72 +244,103 @@ def p_cambiar_direccion4(p):
 #															# se mantiene en la misma dirección que en la que se encontraba anteriormente.
 #															# Se implementa:
 #															# ChangeDir(SAME);
-	pass
+	if (addTo(p)):
+		global _actualPos, _switch
+		print(_switch[_actualPos[2]][0])
+		x = _actualPos[0] + _switch[_actualPos[2]][0]
+		y = _actualPos[1] + _switch[_actualPos[2]][1]
+		if (x in range(0,8)):
+			_actualPos[0] = x
+		if (y in range(0,8)):
+			_actualPos[1] = y 
 
 def p_colocar1(p):
 	'''colocar : PLACE BLOCK SEMICOLON'''					# Definición de la intrucción para colocar 1 bloque en la posición actual
 #															# Se implementa:
 #															# Place Block;
-	global _mat
-	global _actualPos
-	_mat[_actualPos[0]][_actualPos[1]][0] = 0 
+	if (addTo(p)):
+		global _mat
+		global _actualPos
+		_mat[_actualPos[0]][_actualPos[1]][0] = 0 
 				
 def p_colocar1_2(p):
 	'''colocar : PLACE BLOCK NUM SEMICOLON''' 				# Definición de la intrucción para colocar n bloques en la direccion actual 
 #															# Se implementa:
 #															# Place Block;
-	global _mat
-	global _actualPos
-	global _switch
+	if (addTo(p)):
+		global _mat
+		global _actualPos
+		global _switch
 
-	print(_actualPos[2])
-	tmp_dict = _switch[_actualPos[2]]
-	print(tmp_dict)
-	for i in range(0,int(p[3])):
-		if (_actualPos[0]+i*tmp_dict[0] in range(0,8) and _actualPos[1]+i*tmp_dict[1] in range(0,8)):
-			_mat[_actualPos[0] + i*tmp_dict[0]][_actualPos[1]+i*tmp_dict[1]][0] = 0 
-		else:
-			print("No se pueden colocar más bloque en esta dirección")
-			i = int(p[3])
+		print(_actualPos[2])
+		tmp_dict = _switch[_actualPos[2]]
+		print(tmp_dict)
+		for i in range(0,int(p[3])):
+			if (_actualPos[0]+i*tmp_dict[0] in range(0,8) and _actualPos[1]+i*tmp_dict[1] in range(0,8)):
+				_mat[_actualPos[0] + i*tmp_dict[0]][_actualPos[1]+i*tmp_dict[1]][0] = 0 
+			else:
+				print("No se pueden colocar más bloque en esta dirección")
+				i = int(p[3])
 	
 def p_elevar1(p):
 	'''elevar : HIGH BLOCK SEMICOLON'''						# Definición de la intruccion para elevar en 1 nivel un bloque, se implementa:
 #															# High Block;
-	global _mat
-	global _actualPos
-	_mat[_actualPos[0]][_actualPos[1]][0] = 1
+
+	if (addTo(p)):
+		global _mat
+		global _actualPos
+		_mat[_actualPos[0]][_actualPos[1]][0] = 1
 				
-def p_elevarr1_2(p):
+def p_elevar1_2(p):
 	'''elevar : HIGH BLOCK NUM SEMICOLON'''					# Definición de la intruccion para elevar en n el nivel un bloque, se implementa:
 #															# High Block NUM
-	global _mat
-	global _actualPos
-	_mat[_actualPos[0]][_actualPos[1]][0] = int(p[3])
+	if (addTo(p)):
+		global _mat
+		global _actualPos
+		print(p)
+		_mat[_actualPos[0]][_actualPos[1]][0] = int(p[3])
 				
 def p_encender(p):
 	'''encender : PUT LIGHT SEMICOLON'''
-	global _mat
-	global _actualPos
-	_mat[_actualPos[0]][_actualPos[1]][1] = not(_mat[_actualPos[0]][_actualPos[1]][1])
+	if (addTo(p)):
+		global _mat
+		global _actualPos
+		_mat[_actualPos[0]][_actualPos[1]][1] = not(_mat[_actualPos[0]][_actualPos[1]][1])
 				
 def p_mover(p):
 	'''mover : POS LPAR NUM COMMA NUM RPAR SEMICOLON'''
-	global _actualPos
-	_actualPos  = [int(p[3]),int(p[5])]
+	if (addTo(p)):
+		global _actualPos
+		_actualPos  = [int(p[3]),int(p[5])] + [_actualPos[2]]
 					
 def p_pos_inicio(p):
 	'''pos_inicio : POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON'''
-	global _posStart	
-	_posStart = [int(p[3]), int(p[5])]
+	if (addTo(p)):
+		global _posStart	
+		_posStart = [int(p[3]), int(p[5])]
 					
 def p_llamar(p):
-	'''llamar : CALL ID SEMICOLON'''
+	'''llamar : CALL ID'''
+	if (addTo(p)):
+		pass
 				
+def p_procedimientos(p):
+	'''procedimientos : procs expresiones'''
+
 def p_procedimientos_1(p):
-	'''procedimientos : PROC ID expresiones ENDPROC SEMICOLON'''
+	'''procs : PROC ID'''
+	global _proc
+	if (p[2] in _proc):
+		print("procedimiento ya definido")
+		return
+	else:
+		_proc[p[2]] = []
+		global _inside_proc
+		_inside_proc[0] = True
+		_inside_proc[1] = p[2]
 
 def p_procedimientos_2(p):
-	'''procedimientos : epsilon'''
+	'''procs : epsilon'''
 
 def p_epsilon(p):
 	'''epsilon :'''
@@ -270,3 +352,16 @@ def analisisSintantico(txt):
 	parser = yacc.yacc()
 	parser.parse(txt)
 	
+def addTo(p):
+	global _pasada
+	if (_pasada):
+		global _inside_proc
+		if (_inside_proc[0]):
+			global _proc
+			_proc[_inside_proc[1]]+=[p[1:]]
+		else:
+			global _expresiones
+			_expresiones+=[p[1:]]
+		return False
+	else:
+		return True
