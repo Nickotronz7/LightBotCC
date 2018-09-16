@@ -1,0 +1,31 @@
+Var h = 5;
+Begin
+Call c
+Pos(0,0);
+For t = 8 Times
+    Put Light;
+    ChangeDir (Right);
+    ChangeDir (Same);
+    ChangeDir (Left);
+    ChangeDir (Same);
+    High Block 2;
+Fend;
+Pos(7,0);
+Set h = 0;
+Keep
+    ChangeDir (Same);
+    Put Light;
+    Add+h;
+    When h = 3 Then
+        Skip;
+    Whend;
+Kend;
+End
+Proc c
+    Pos(1,1);
+    Put Light;
+    High Block;
+    Pos(2,2);
+    High Block;
+    Put Light;
+End-Proc;
