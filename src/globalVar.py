@@ -22,3 +22,15 @@ _SWITCH = {
             2:[1,0],
 			3:[-1,0]
 		}
+
+global _PASADA
+_PASADA = True
+
+global _PROC
+_PROC = {}
+
+global _EXPRESIONES
+_EXPRESIONES = []
+
+global _keep
+_keep = [0]
