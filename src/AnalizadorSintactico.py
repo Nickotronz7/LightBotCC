@@ -246,7 +246,7 @@ def p_cambiar_direccion4(p):
 #															# ChangeDir(SAME);
 	if (addTo(p)):
 		global _actualPos, _switch
-		print(_switch[_actualPos[2]][0])
+		#print(_switch[_actualPos[2]][0])
 		x = _actualPos[0] + _switch[_actualPos[2]][0]
 		y = _actualPos[1] + _switch[_actualPos[2]][1]
 		if (x in range(0,8)):
@@ -272,10 +272,10 @@ def p_colocar1_2(p):
 		global _actualPos
 		global _switch
 
-		print(_actualPos[2])
+		#print(_actualPos[2])
 		tmp_dict = _switch[_actualPos[2]]
-		print(tmp_dict)
-		for i in range(0,int(p[3])):
+		#print(tmp_dict)
+		for i in range(0, int(p[3]) ):
 			if (_actualPos[0]+i*tmp_dict[0] in range(0,8) and _actualPos[1]+i*tmp_dict[1] in range(0,8)):
 				_mat[_actualPos[0] + i*tmp_dict[0]][_actualPos[1]+i*tmp_dict[1]][0] = 0 
 			else:
@@ -297,7 +297,7 @@ def p_elevar1_2(p):
 	if (addTo(p)):
 		global _mat
 		global _actualPos
-		print(p)
+		#print(p)
 		_mat[_actualPos[0]][_actualPos[1]][0] = int(p[3])
 				
 def p_encender(p):
