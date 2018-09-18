@@ -1,0 +1,19 @@
+Var j = 9;
+Begin
+Pos(0,0);
+Place Block 7;
+Pos(1,0);
+Place Block 7;
+Pos(2,0);
+Place Block 7;
+Pos(1,0);
+For k = 7 Times
+    High Block;
+    ChangeDir(Same);
+Fend;
+Pos(1,0);
+For k = 6 Times
+    ChangeDir(Same);
+    Put Light;
+Fend;
+End

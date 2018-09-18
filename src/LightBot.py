@@ -10,17 +10,14 @@ from globalVar import _PROC as _proc
 from globalVar import _EXPRESIONES as _expresiones
 
 def execute(_expresiones):
-    print()
-    print(_expresiones)
-    print()
     global _proc, _variables
     _lineno = 0
     while(_lineno  < len(_expresiones)):
         if(_expresiones[_lineno][0] == "PosStart"):
             p_pos_inicio([0] + _expresiones[_lineno])
-        elif(_expresiones[_lineno][0] == "Place" and len(_expresiones[_lineno][0] == 4)):
+        elif(len(_expresiones[_lineno]) == 4 and _expresiones[_lineno][0] == "Place"):
             p_colocar1_2([0] + _expresiones[_lineno])
-        elif(_expresiones[_lineno][0] == "Place"):
+        elif(_expresiones[_lineno][0] == "Place" and _expresiones[_lineno][0] == ";"):
             p_colocar1([0] + _expresiones[_lineno])
         elif(_expresiones[_lineno][0] =="Pos"):
             p_mover([0] + _expresiones[_lineno])
@@ -31,7 +28,7 @@ def execute(_expresiones):
             _lineno -=1
         elif(_expresiones[_lineno][0] == "Set"):
             p_asignar([0] + _expresiones[_lineno])
-        elif(_expresiones[_lineno][0] == "High" and len(_expresiones[_lineno]) == 4):
+        elif(len(_expresiones[_lineno]) == 4 and _expresiones[_lineno][0] == "High"):
             p_elevar1_2([0] + _expresiones[_lineno])
         elif(_expresiones[_lineno][0] == "High"):
             p_elevar1([0] + _expresiones[_lineno])
@@ -41,29 +38,16 @@ def execute(_expresiones):
             p_actualizar_1([0] + _expresiones[_lineno])
             
         elif(_expresiones[_lineno][0] == "When"):
-
-            print()
-            print("#############################")
-            print(_variables[_expresiones[_lineno][1]] == int(_expresiones[_lineno][3]))
-            print("#############################")
-            print()
-
             fin = 1
             if (_variables[_expresiones[_lineno][1]] == int(_expresiones[_lineno][3])):
                 while(_expresiones[_lineno+fin][0] != "Whend"):
                     fin+=1
-                print("___________________________")
-                print(_expresiones[:_lineno + fin][_lineno+1:])
-                print("___________________________")   
                 execute(_expresiones[:_lineno + fin][_lineno+1:])
                 _lineno +=fin +1 
                 
             else:
                 while(_expresiones[_lineno+fin][0] != "Whend"):
                     fin += 1
-                print("___________________________")
-                print(_expresiones[:_lineno + fin][_lineno+1:])
-                print("___________________________")
                 _lineno += fin + 1
 
 
@@ -120,7 +104,7 @@ def main(route):
     global _expresiones
 
     execute(_expresiones)
-    printMat()
-    return 1                                                                        # Análisis realizado correctamente
+    #printMat()
+    return 1                                                                       # Análisis realizado correctamente
 
-main('prueba4.LBcc.txt')
+main('prueba5.LBcc.txt')
