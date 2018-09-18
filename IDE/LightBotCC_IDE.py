@@ -9,6 +9,8 @@ from tkinter import Label
 from tkinter import END
 from tkinter import Tk
 
+global file_name
+file_name = ''
 
 class TextLineNumbers(tk.Canvas):
     def __init__(self, *args, **kwargs):
@@ -103,6 +105,7 @@ class Window(Frame):
 
         file.add_command(label="Open", command = self.open_file)
         file.add_command(label="Save", command = self.save_file)
+        file.add_command(label="Save As...", command = self.save_file_as )
 
         options.add_command(label = "Theme", command = self.client_theme)
         options.add_command(label="Exit", command = self.client_exit)
@@ -119,27 +122,38 @@ class Window(Frame):
         exit()
 
     def open_file(self):
-        name = askopenfilename(initialdir = "~/Desktop",
+        global file_name
+        file_name = askopenfilename(initialdir = "~/Desktop",
                                 filetypes = (("Text File", "*.txt"), 
                                     ("All Files", "*.*")),
                                     title = "Choose a file.")
         try:
-            with open(name, 'r') as UseFile:
+            with open(file_name, 'r') as UseFile:
                 self.textField.delete('1.0', END)
                 self.textField.insert('1.0', UseFile.read())
         except:
             return
 
-    def save_file(self):
+    def save_file_as(self):
         file = asksaveasfile(mode = 'w', defaultextension = ".txt")
         text2save = self.textField.get('1.0', END)
         file.write(text2save)
         file.close()
 
+    def save_file(self):
+        global file_name
+        file = open(file_name, 'w')
+        text2save = self.textField.get('1.0', END)
+        file.write(text2save)
+        file.close()
+
     def run_file(self):
-        print("run_file(self)")
-        
-    
+        self.save_file
+        global file_name
+        print(file_name)
+
+
+
 
 
 root = Tk()
