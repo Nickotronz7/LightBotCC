@@ -8,7 +8,7 @@ counter = 0
 
 time.sleep(1)
 
-matrix1 = [5,1,0,1,2,3,2,0,
+matrix1 = [0,1,0,1,2,3,2,0,
            0,1,0,1,2,7,6,0,
            8,8,8,8,8,8,4,0,
            8,8,8,8,8,8,8,8,
@@ -43,6 +43,15 @@ matrix4 = [1,2,3,4,5,6,7,8,
            6,7,8,1,2,3,4,5,
            7,8,1,2,3,4,5,6,
            8,1,2,3,4,5,6,7]
+
+matrix5 = [0,0,4,8,8,8,8,8,
+           8,8,8,8,8,8,8,8,
+           8,8,8,8,8,8,8,8,
+           8,8,8,8,8,8,8,8,
+           8,8,8,8,8,8,8,8,
+           8,8,8,8,8,8,8,8,
+           8,8,8,8,8,8,8,8,
+           8,8,8,8,8,8,8,8]
            
 
 player1 = [0,0]
@@ -50,25 +59,28 @@ player2 = [2,4]
 
 command1 = [2,2,2,2,2]
 command2 = [2,1,4,1,2,4,2,1]
-command3 = [4,4,4,4,4]
+command3 = [0,2,3,0,3,3,3,4,0,4,1,0,4]
+command4 = [2,0,0,4]
 
 
 matrix10 = ''.join(str(e) for e in matrix1)
 matrix20 = ''.join(str(e) for e in matrix2)
 matrix30 = ''.join(str(e) for e in matrix3)
 matrix40 = ''.join(str(e) for e in matrix4)
+matrix50 = ''.join(str(e) for e in matrix5)
 
 player10 = ''.join(str(e) for e in player1)
 player20 = ''.join(str(e) for e in player2)
 
 command10 = ''.join(str(e) for e in command1)
 command20 = ''.join(str(e) for e in command2)
-command30 = ''.join(str(e) for e in command3)   
+command30 = ''.join(str(e) for e in command3)
+command40 = ''.join(str(e) for e in command4)  
 
 
-matrix = matrix10
+matrix = matrix50
 pos = player10
-command = command20
+command = command40
 
 
 matrixPart1 = matrix[:32]

@@ -176,6 +176,31 @@ void setMap(int x, int y, char option){
  */
 void playGame(char option){
   //move forward
+  if ((option == '0') || (option == '3'))
+  {
+    setMap(posx, posy, matrixMem.charAt(posx+(posy*8)));
+    switch(player)
+    {
+      case '0':
+        posy -= 1;
+        playerOrientation (posx, posy, player);
+        break;
+      case '1':
+        posx += 1;
+        playerOrientation (posx, posy, player);
+        break;
+      case '2':
+        posy += 1;
+        playerOrientation (posx, posy, player);
+        break;
+      case '3':
+        posy -= 1;
+        playerOrientation (posx, posy, player);
+        break;
+    }
+    return;
+  }
+  
 
   //rotate left
   if (option == '2')
@@ -195,6 +220,7 @@ void playGame(char option){
         playerOrientation (posx, posy, '0');
         break;
     }
+    return;
   }
   
   //rotate right
@@ -215,6 +241,7 @@ void playGame(char option){
         playerOrientation (posx, posy, '0');
         break;
     }
+    return;
   }
 
   //jump
@@ -223,7 +250,7 @@ void playGame(char option){
   if (option == '4'){
    lightSwitch(posx, posy);
    playerOrientation(posx,posy,player);
-    
+   return;
   }
 }
 
