@@ -181,22 +181,19 @@ void playGame(char option){
   if (option == '2')
   {
     setMap(posx, posy, matrixMem.charAt(posx+(posy*8)));
-  
-    if (player == '0'){
-      playerOrientation (posx, posy, '3');
-      
-    }
-    if (player == '1'){
-      playerOrientation (posx, posy, '0');
-      
-    }
-    if (player == '2'){
-      playerOrientation (posx, posy, '1');
-      
-    }
-    if (player == '3'){
-      playerOrientation (posx, posy, '2');
-      
+    switch(player){
+      case '0':
+        playerOrientation (posx, posy, '3');
+        break;
+      case '3':
+        playerOrientation (posx, posy, '2');
+        break;
+      case '2':
+        playerOrientation (posx, posy, '1');
+        break;
+      case '1':
+        playerOrientation (posx, posy, '0');
+        break;
     }
   }
   
@@ -204,22 +201,19 @@ void playGame(char option){
   if (option == '1')
   {
     setMap(posx, posy, matrixMem.charAt(posx+(posy*8)));
-  
-    if (player == '0'){
-      playerOrientation (posx, posy, '1');
-      
-    }
-    if (player == '1'){
-      playerOrientation (posx, posy, '2');
-        
-    }
-    if (player == '2'){
-      playerOrientation (posx, posy, '3');
-      
-    }
-    if (player == '3'){
-      playerOrientation (posx, posy, '0');
-      
+    switch(player){
+      case '0':
+        playerOrientation (posx, posy, '1');
+        break;
+      case '1':
+        playerOrientation (posx, posy, '2');
+        break;
+      case '2':
+        playerOrientation (posx, posy, '3');
+        break;
+      case '3':
+        playerOrientation (posx, posy, '0');
+        break;
     }
   }
 
@@ -227,8 +221,8 @@ void playGame(char option){
 
   //turn light off / on
   if (option == '4'){
-    lightSwitch(posx, posy);
-    playerOrientation(posx,posy,player);
+   lightSwitch(posx, posy);
+   playerOrientation(posx,posy,player);
     
   }
 }
@@ -239,78 +233,69 @@ void playerOrientation (int posx, int posy, char option){
   {
     matrix.fillRect((posx)*4,floor(posy)*4,2,1,matrix.Color333(255,0,0));
     matrix.fillRect((posx)*4,(floor(posy)*4)+1,2,1,matrix.Color333(0,0,255));
-    player = '0';
+    player = option;
     
   }
   if (option == '1')  //East
   {
-    matrix.fillRect((posx)*4,floor(posy)*4,1,2,matrix.Color333(0,0,255));
-    matrix.fillRect(((posx)*4)+1,floor(posy)*4,1,2,matrix.Color333(255,0,0));
-    player = '1';
+    matrix.fillRect((posx)*4,posy*4,1,2,matrix.Color333(0,0,255));
+    matrix.fillRect(((posx)*4)+1,posy*4,1,2,matrix.Color333(255,0,0));
+    player = option;
     
   }
   if (option == '2')  //South
   {
     matrix.fillRect((posx)*4,(floor(posy)*4)+1,2,1,matrix.Color333(255,0,0));
     matrix.fillRect((posx)*4,floor(posy)*4,2,1,matrix.Color333(0,0,255));
-    player = '2';
+    player = option;
     
   }
   if (option == '3')  //West
   {
-    matrix.fillRect((posx)*4,floor(posy)*4,1,2,matrix.Color333(255,0,0));
-    matrix.fillRect(((posx)*4)+1,floor(posy)*4,1,2,matrix.Color333(0,0,255));  
-    player = '3';
+    matrix.fillRect((posx)*4,posy*4,1,2,matrix.Color333(255,0,0));
+    matrix.fillRect(((posx)*4)+1,posy*4,1,2,matrix.Color333(0,0,255));
+    player = option;
   }
 
 }
 
 void lightSwitch(int posx, int posy)
 {
-  if (matrixMem.charAt(posx+(posy*8)) == '4')
+  switch((matrixMem.charAt(posx+(posy*8))))
   {
-    matrixMem.setCharAt(posx+(posy*8), 'w');
-    matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
-  }
-  if (matrixMem.charAt(posx+(posy*8)) == '5')
-  {
-    matrixMem.setCharAt(posx+(posy*8), 'x');
-    matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
-  }
-  if (matrixMem.charAt(posx+(posy*8)) == '6')
-  {
-    matrixMem.setCharAt(posx+(posy*8), 'y');
-    matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
-  }
-  if (matrixMem.charAt(posx+(posy*8)) == '7')
-  {
-    matrixMem.setCharAt(posx+(posy*8),'z');
-    matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
-  }
-
-
-  
-  if (matrixMem.charAt(posx+(posy*8)) == 'w')
-  {
-    matrixMem.setCharAt(posx+(posy*8), '4');
-    matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(7,0,4));
-  }
-  if (matrixMem.charAt(posx+(posy*8)) == 'x')
-  {
+    case '4':
+      matrixMem.setCharAt(posx+(posy*8), 'w');
+      matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
+      break;
+    case '5':
+      matrixMem.setCharAt(posx+(posy*8), 'x');
+      matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
+      break;
+    case '6':
+      matrixMem.setCharAt(posx+(posy*8), 'y');
+      matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
+      break;
+    case '7':
+      matrixMem.setCharAt(posx+(posy*8), 'z');
+      matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
+      break;
+    case 'w':
+      matrixMem.setCharAt(posx+(posy*8), '4');
+      matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(7,0,4));
+      break;
+    case 'x':
     matrixMem.setCharAt(posx+(posy*8), '5');
-    matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(7,0,4));
-  }
-  if (matrixMem.charAt(posx+(posy*8)) == 'y')
-  {
-    matrixMem.setCharAt(posx+(posy*8), '6');
-    matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(7,0,4));
-  }
-  if (matrixMem.charAt(posx+(posy*8)) == 'z')
-  {
-    matrixMem.setCharAt(posx+(posy*8),'7');
-    matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(7,0,4));
-  }
-  
+        matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(7,0,4));
+      break;
+    case 'y':
+      matrixMem.setCharAt(posx+(posy*8), '6');
+      matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(7,0,4));
+      break;
+    case 'z':
+      matrixMem.setCharAt(posx+(posy*8), '7');
+      matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(7,0,4));
+      break;
+  }  
 }
 
 
