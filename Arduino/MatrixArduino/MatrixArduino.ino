@@ -11,6 +11,7 @@
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 // Player initial position
+int player = 0; // 0 = N; 1 = E; 2 = S; 3 = W
 int posx = 0;
 int posy = 0;
 
@@ -18,9 +19,11 @@ int posy = 0;
 bool isSet = false;
 
 // Counter
-
+int counter = 0;
 
 char option;
+
+String matrixMem = "";
 
 
 void setup(){
@@ -31,26 +34,46 @@ void setup(){
  
 }
 
-int counter = 0;
-
 void loop() {
 
   option = Serial.read();
 
-  if (counter < 64){
-    if (option == '0') //floor 0
+  if (counter <64){
+    setMap(option);
+  }
+
+  if (counter == 64){
+    return;
+  }
+  
+  if (counter == 65){
+    return;
+  }
+
+  if (counter > 65){
+    return;
+  }
+  
+    counter++;
+}
+
+void setMap(char option){
+  
+  matrixMem += option;
+  
+  if (option == '0') //floor 0 //verde oscuro
     {
-        matrix.fillRect((counter%8)*4,floor(counter/8)*4,4,4,matrix.Color333(0,130,200));
+      matrix.fillRect((counter%8)*4,floor(counter/8)*4,4,4,matrix.Color333(0,130,200));
     }
-    if (option == '1') // floor 1
+    if (option == '1') // floor 1 //azul
     {
       matrix.fillRect((counter%8)*4,floor(counter/8)*4,4,4,matrix.Color333(0,180,75));
     }
-    if (option == '2') // floor 2
+    if (option == '2') // floor 2 //verde claro
     {
       matrix.fillRect((counter%8)*4,floor(counter/8)*4,4,4,matrix.Color333(170,110,40));
     }
-    if (option == '3') // floor 3
+    if (option == '3') // floor 3 //anaranjado
     {
       matrix.fillRect((counter%8)*4,floor(counter/8)*4,4,4,matrix.Color333(245,130,48));
     }
@@ -78,9 +101,28 @@ void loop() {
     {
       matrix.fillRect((counter%8)*4,floor(counter/8)*4,4,4,matrix.Color333(0,0,0));
     }
-    delay (600);
-  }
-  
-    counter++;
+}
 
+void playgame(char option){
+  //string.indexof(val) para encontrar la posicion de la matriz
+}
+
+void playerOrientation (int posx, int posy, int option){
+  if (option == '0')  //North
+  {
+    matrix.fillRect(posx,posy,2,1,matrix.Color333(0,0,0)); 
+    
+  }
+  if (option == '1')  //East
+  {
+    
+  }
+  if (option == '2')  //South
+  {
+    
+  }
+  if (option == '3')  //West
+  {
+    
+  }
 }

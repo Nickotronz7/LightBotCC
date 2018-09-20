@@ -35,13 +35,16 @@ matrix3 = [8,8,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8]
 
-while (counter < 64):
-    
-    toprint = str(matrix2[counter])
-    printing = toprint.encode()
-    ser.write(printing)
-    print(counter ,printing, counter%8, counter//8)
-    counter += 1
-    time.sleep(0.5)
-              
+matrix10 = ''.join(str(e) for e in matrix1)
+matrix20 = ''.join(str(e) for e in matrix2)
+matrix30 = ''.join(str(e) for e in matrix3) 
+
+
+time.sleep(1)
+
+matrix = matrix30
+
+ser.write(matrix.encode())
+print(matrix.encode())
+ 
 
