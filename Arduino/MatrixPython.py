@@ -35,16 +35,25 @@ matrix3 = [8,8,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8]
 
+player1 = [0,0,1]
+
+player2 = [3,4,3]
+
 matrix10 = ''.join(str(e) for e in matrix1)
 matrix20 = ''.join(str(e) for e in matrix2)
-matrix30 = ''.join(str(e) for e in matrix3) 
+matrix30 = ''.join(str(e) for e in matrix3)
+player10 = ''.join(str(e) for e in player1)
+player20 = ''.join(str(e) for e in player2) 
 
 
 time.sleep(1)
 
-matrix = matrix30
+matrix = matrix20
+#player = player10
 
 ser.write(matrix.encode())
+#ser.write(player.encode())
 print(matrix.encode())
+#print(player.encode())
  
 

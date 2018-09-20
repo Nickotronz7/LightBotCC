@@ -11,7 +11,7 @@
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 // Player initial position
-int player = 0; // 0 = N; 1 = E; 2 = S; 3 = W
+char player = '0'; // 0 = N; 1 = E; 2 = S; 3 = W
 int posx = 0;
 int posy = 0;
 
@@ -29,6 +29,8 @@ void setup(){
   Serial.begin(9600);
   matrix.begin();
   delay(1100);
+
+  Serial.print(SERIAL_BUFFER_SIZE);
  
 }
 
@@ -39,19 +41,21 @@ void loop() {
   if (counter <64){
     setMap(option);
   }
-
   if (counter == 64){
-    return;
+    posx = option - '0';
   }
-  
   if (counter == 65){
-    return;
+    posy = option - '0';
   }
-
-  if (counter > 65){
-    return;
+  if (counter == 66){
+    player = option;
+    playerOrientation (posx, posy, player);
+    
   }
-  
+  if (counter > 66){
+    playGame(option);
+    delay(1000);
+  }
     counter++;
 }
 
@@ -175,44 +179,94 @@ void setMap(int x, int y, char option){
  * 4 -> turn light off / on
  * 
  */
-void playgame(char option){
+void playGame(char option){
   //move forward
 
   //rotate left
+  if (option == '1')
+  {
+    setMap(posx, posy, matrixMem.charAt(posx+(posy*8)));
+  
+    if (player == 0){
+      
+      
+    }
+    if (player == 1){
 
+      
+    }
+    if (player == 2){
+
+      
+    }
+    if (player == 3){
+
+      
+    }
+
+    
+  }
+  
   //rotate right
+  if (option == '2')
+  {
+    setMap(posx, posy, matrixMem.charAt(posx+(posy*8)));
+  
+    if (player == 0){
+      
+      
+    }
+    if (player == 1){
+
+      
+    }
+    if (player == 2){
+
+      
+    }
+    if (player == 3){
+
+      
+    }
+  }
 
   //jump
 
   //turn light off / on
   
+
 }
 
 void playerOrientation (int posx, int posy, int option){
+  
   if (option == '0')  //North
   {
     matrix.fillRect((posx)*4,floor(posy)*4,2,1,matrix.Color333(255,0,0));
     matrix.fillRect((posx)*4,(floor(posy)*4)+1,2,1,matrix.Color333(0,0,255));
+    player = 0;
     
   }
   if (option == '1')  //East
   {
     matrix.fillRect((posx)*4,floor(posy)*4,1,2,matrix.Color333(0,0,255));
     matrix.fillRect(((posx)*4)+1,floor(posy)*4,1,2,matrix.Color333(255,0,0));
+    player = 1;
     
   }
   if (option == '2')  //South
   {
     matrix.fillRect((posx)*4,(floor(posy)*4)+1,2,1,matrix.Color333(255,0,0));
     matrix.fillRect((posx)*4,floor(posy)*4,2,1,matrix.Color333(0,0,255));
+    player = 2;
     
   }
   if (option == '3')  //West
   {
     matrix.fillRect((posx)*4,floor(posy)*4,1,2,matrix.Color333(255,0,0));
-    matrix.fillRect(((posx)*4)+1,floor(posy)*4,1,2,matrix.Color333(0,0,255));
-    
+    matrix.fillRect(((posx)*4)+1,floor(posy)*4,1,2,matrix.Color333(0,0,255));  
+    player = '3';
   }
+
 }
 
 void lightSwitch(int posx, int posy)
@@ -238,6 +292,8 @@ void lightSwitch(int posx, int posy)
     matrix.fillRect(posx+2,(posy*4)+2,2,2,matrix.Color333(255,255,255));
   }
 
+
+  
   if (matrixMem.charAt(posx+(posy*8)) == 'w')
   {
     matrixMem.setCharAt(posx+(posy*8), '4');
