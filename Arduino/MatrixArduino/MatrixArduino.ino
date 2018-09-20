@@ -11,7 +11,7 @@
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 // Player initial position
-char player = '0'; // 0 = N; 1 = E; 2 = S; 3 = W
+char player = '2'; // 0 = N; 1 = E; 2 = S; 3 = W
 int posx = 0;
 int posy = 0;
 
@@ -29,34 +29,29 @@ void setup(){
   Serial.begin(9600);
   matrix.begin();
   delay(1100);
-
-  Serial.print(SERIAL_BUFFER_SIZE);
  
 }
 
 void loop() {
-
-  option = Serial.read();
-
-  if (counter <64){
-    setMap(option);
+  while(Serial.available()){
+    option = Serial.read();
+  
+    if (counter <64){
+      setMap(option);
+    }
+    if (counter == 64){
+      posx = option - '0';
+    }
+    if (counter == 65){
+      posy = option - '0';
+      playerOrientation (posx, posy, player);
+    }
+    if (counter > 65){
+      playGame(option);
+      delay(1000);
+    }
+      counter++;
   }
-  if (counter == 64){
-    posx = option - '0';
-  }
-  if (counter == 65){
-    posy = option - '0';
-  }
-  if (counter == 66){
-    player = option;
-    playerOrientation (posx, posy, player);
-    
-  }
-  if (counter > 66){
-    playGame(option);
-    delay(1000);
-  }
-    counter++;
 }
 
 void setMap(char option){
@@ -173,8 +168,8 @@ void setMap(int x, int y, char option){
 
 /*
  * 0 -> forward
- * 1 -> rotate left
- * 2 -> roate right
+ * 2 -> rotate left
+ * 1 -> roate right
  * 3 -> jump (move forward)
  * 4 -> turn light off / on
  * 
@@ -183,49 +178,47 @@ void playGame(char option){
   //move forward
 
   //rotate left
-  if (option == '1')
-  {
-    setMap(posx, posy, matrixMem.charAt(posx+(posy*8)));
-  
-    if (player == 0){
-      
-      
-    }
-    if (player == 1){
-
-      
-    }
-    if (player == 2){
-
-      
-    }
-    if (player == 3){
-
-      
-    }
-
-    
-  }
-  
-  //rotate right
   if (option == '2')
   {
     setMap(posx, posy, matrixMem.charAt(posx+(posy*8)));
   
-    if (player == 0){
-      
-      
-    }
-    if (player == 1){
-
+    if (player == '0'){
+      playerOrientation (posx, posy, '3');
       
     }
-    if (player == 2){
-
+    if (player == '1'){
+      playerOrientation (posx, posy, '0');
       
     }
-    if (player == 3){
-
+    if (player == '2'){
+      playerOrientation (posx, posy, '1');
+      
+    }
+    if (player == '3'){
+      playerOrientation (posx, posy, '2');
+      
+    }
+  }
+  
+  //rotate right
+  if (option == '1')
+  {
+    setMap(posx, posy, matrixMem.charAt(posx+(posy*8)));
+  
+    if (player == '0'){
+      playerOrientation (posx, posy, '1');
+      
+    }
+    if (player == '1'){
+      playerOrientation (posx, posy, '2');
+        
+    }
+    if (player == '2'){
+      playerOrientation (posx, posy, '3');
+      
+    }
+    if (player == '3'){
+      playerOrientation (posx, posy, '0');
       
     }
   }
@@ -233,31 +226,34 @@ void playGame(char option){
   //jump
 
   //turn light off / on
-  
-
+  if (option == '4'){
+    lightSwitch(posx, posy);
+    playerOrientation(posx,posy,player);
+    
+  }
 }
 
-void playerOrientation (int posx, int posy, int option){
+void playerOrientation (int posx, int posy, char option){
   
   if (option == '0')  //North
   {
     matrix.fillRect((posx)*4,floor(posy)*4,2,1,matrix.Color333(255,0,0));
     matrix.fillRect((posx)*4,(floor(posy)*4)+1,2,1,matrix.Color333(0,0,255));
-    player = 0;
+    player = '0';
     
   }
   if (option == '1')  //East
   {
     matrix.fillRect((posx)*4,floor(posy)*4,1,2,matrix.Color333(0,0,255));
     matrix.fillRect(((posx)*4)+1,floor(posy)*4,1,2,matrix.Color333(255,0,0));
-    player = 1;
+    player = '1';
     
   }
   if (option == '2')  //South
   {
     matrix.fillRect((posx)*4,(floor(posy)*4)+1,2,1,matrix.Color333(255,0,0));
     matrix.fillRect((posx)*4,floor(posy)*4,2,1,matrix.Color333(0,0,255));
-    player = 2;
+    player = '2';
     
   }
   if (option == '3')  //West

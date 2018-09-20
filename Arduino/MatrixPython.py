@@ -2,7 +2,7 @@ import serial
 import time
 import random
 
-ser = serial.Serial('COM3', 9600, timeout = 0)
+ser = serial.Serial('COM4', 9600, timeout = 0)
 
 counter = 0
 
@@ -35,25 +35,60 @@ matrix3 = [8,8,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8]
 
-player1 = [0,0,1]
+matrix4 = [1,2,3,4,5,6,7,8,
+           2,3,4,5,6,7,8,1,
+           3,4,5,6,7,8,1,2,
+           4,5,6,7,8,1,2,3,
+           5,6,7,8,1,2,3,4,
+           6,7,8,1,2,3,4,5,
+           7,8,1,2,3,4,5,6,
+           8,1,2,3,4,5,6,7]
+           
 
-player2 = [3,4,3]
+player1 = [0,0]
+player2 = [2,4]
+
+command1 = [2,2,2,2,2,2,2,2,2,2]
 
 matrix10 = ''.join(str(e) for e in matrix1)
 matrix20 = ''.join(str(e) for e in matrix2)
 matrix30 = ''.join(str(e) for e in matrix3)
+matrix40 = ''.join(str(e) for e in matrix4)
+
 player10 = ''.join(str(e) for e in player1)
-player20 = ''.join(str(e) for e in player2) 
+player20 = ''.join(str(e) for e in player2)
+
+command10 = ''.join(str(e) for e in command1)
+
+
+matrix = matrix40
+pos = player20
+command = command10
+
+
+matrixPart1 = matrix[:32]
+matrixPart2 = matrix[32:]
+
+
+
+    
 
 
 time.sleep(1)
 
-matrix = matrix20
-#player = player10
 
-ser.write(matrix.encode())
-#ser.write(player.encode())
-print(matrix.encode())
-#print(player.encode())
+ser.write(matrixPart1.encode())
+time.sleep(1)
+ser.write(matrixPart2.encode())
+time.sleep(1)
+ser.write(pos.encode())
+time.sleep(1)
+ser.write(command.encode())
+
+print(matrixPart1)
+print(matrixPart2)
+print(pos)
+print(command)
+
  
 
