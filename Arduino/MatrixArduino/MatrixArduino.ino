@@ -64,6 +64,9 @@ void setMap(char option){
   if (option == '0') //floor 0 //verde oscuro
     {
       matrix.fillRect((counter%8)*4,floor(counter/8)*4,4,4,matrix.Color333(0,130,200));
+      
+      matrix.fillRect((counter%8)*4,floor(counter/8)*4,2,1,matrix.Color333(0,0,255));
+      matrix.fillRect((counter%8)*4,(floor(counter/8)*4)+1,2,1,matrix.Color333(255,0,0));
     }
     if (option == '1') // floor 1 //azul
     {
@@ -72,6 +75,9 @@ void setMap(char option){
     if (option == '2') // floor 2 //verde claro
     {
       matrix.fillRect((counter%8)*4,floor(counter/8)*4,4,4,matrix.Color333(170,110,40));
+
+      matrix.fillRect((counter%8)*4,floor(counter/8)*4,1,2,matrix.Color333(255,0,0));
+      matrix.fillRect(((counter%8)*4)+1,floor(counter/8)*4,1,2,matrix.Color333(0,0,255));
     }
     if (option == '3') // floor 3 //anaranjado
     {
@@ -110,19 +116,26 @@ void playgame(char option){
 void playerOrientation (int posx, int posy, int option){
   if (option == '0')  //North
   {
-    matrix.fillRect(posx,posy,2,1,matrix.Color333(0,0,0)); 
+    matrix.fillRect((posx)*4,floor(posy)*4,2,1,matrix.Color333(255,0,0));
+    matrix.fillRect((posx)*4,(floor(posy)*4)+1,2,1,matrix.Color333(0,0,255));
     
   }
   if (option == '1')  //East
   {
+    matrix.fillRect((posx)*4,floor(posy)*4,1,2,matrix.Color333(0,0,255));
+    matrix.fillRect(((posx)*4)+1,floor(posy)*4,1,2,matrix.Color333(255,0,0));
     
   }
   if (option == '2')  //South
   {
+    matrix.fillRect((posx)*4,(floor(posy)*4)+1,2,1,matrix.Color333(255,0,0));
+    matrix.fillRect((posx)*4,floor(posy)*4,2,1,matrix.Color333(0,0,255));
     
   }
   if (option == '3')  //West
   {
+    matrix.fillRect((posx)*4,floor(posy)*4,1,2,matrix.Color333(255,0,0));
+    matrix.fillRect(((posx)*4)+1,floor(posy)*4,1,2,matrix.Color333(0,0,255));
     
   }
 }
