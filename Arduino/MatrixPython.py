@@ -2,7 +2,7 @@ import serial
 import time
 import random
 
-ser = serial.Serial('COM4', 9600, timeout = 0)
+ser = serial.Serial('COM3', 9600, timeout = 0)
 
 counter = 0
 
@@ -44,9 +44,9 @@ matrix4 = [1,2,3,4,5,6,7,8,
            7,8,1,2,3,4,5,6,
            8,1,2,3,4,5,6,7]
 
-matrix5 = [0,0,4,8,8,8,8,8,
-           8,8,8,8,8,8,8,8,
-           8,8,8,8,8,8,8,8,
+matrix5 = [0,0,8,8,8,8,8,8,
+           8,0,8,8,8,8,8,8,
+           8,4,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8,
            8,8,8,8,8,8,8,8,
@@ -59,8 +59,8 @@ player2 = [2,4]
 
 command1 = [2,2,2,2,2]
 command2 = [2,1,4,1,2,4,2,1]
-command3 = [0,2,3,0,3,3,3,4,0,4,1,0,4]
-command4 = [2,0,0,4]
+command3 = [0,2,3,0,3,3,3,4,0,4,1,0,4,9]
+command4 = [2,0,1,0,0,4,4,4,4,4,4,4]
 
 
 matrix10 = ''.join(str(e) for e in matrix1)
@@ -78,9 +78,9 @@ command30 = ''.join(str(e) for e in command3)
 command40 = ''.join(str(e) for e in command4)  
 
 
-matrix = matrix50
+matrix = matrix10
 pos = player10
-command = command40
+command = command30
 
 
 matrixPart1 = matrix[:32]
