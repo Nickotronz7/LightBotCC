@@ -154,6 +154,7 @@ def p_cicloFor(p):
 #															# Donde expresiones representa un no-terminal.
 	addTo(p)
 
+
 def p_expresiones18(p):
 	'''expresiones : fend expresiones'''
 
@@ -308,17 +309,52 @@ def p_encender(p):
 		_mat[_actualPos[0]][_actualPos[1]][1] = not(_mat[_actualPos[0]][_actualPos[1]][1])
 				
 def p_mover(p):
-	'''mover : POS LPAR NUM COMMA NUM RPAR SEMICOLON'''
+	'''mover : POS LPAR ID COMMA ID RPAR SEMICOLON'''
 	if (addTo(p)):
-		global _actualPos
-		_actualPos  = [int(p[3]),int(p[5])] + [_actualPos[2]]
+		global _actualPos, _variables
+		if (p[3] in _variables):
+			if (_variables[p[3]] in range (0,8)):
+				_actualPos[0] = int(_variables[p[3]])
+			else:
+				print("Variable " + p[3] +" tiene un valor fuera de los límites = " +_variables[p[3]])
+				return False
+		else:
+			print(p[3]+ " no es una variable declarada dentro del programa.")
+			return False
+		if (p[5] in _variables):
+			if (_variables[p[5]] in range (0,8)):
+				_actualPos[1] = int(_variables[p[5]])
+			else:
+				print("Variable " + p[5] +" tiene un valor fuera de los límites = " +_variables[p[5]])
+				return False
+		else:
+			print(p[5] + " no es una variable declarada dentro del programa.")
+			return False
+		return True
 					
 def p_pos_inicio(p):
-	'''pos_inicio : POSSTART LPAR NUM COMMA NUM RPAR SEMICOLON'''
+	'''pos_inicio : POSSTART LPAR ID COMMA ID RPAR SEMICOLON'''
 	if (addTo(p)):
-		global _posStart	
-		_posStart = [int(p[3]), int(p[5])]
-					
+		global _posStart, _variables
+		if (p[3] in _variables):
+			if (_variables[p[3]] in range (0,8)):
+				_posStart[0] = int(_variables[p[3]])
+			else:
+				print("Variable " + p[3] +" tiene un valor fuera de los límites = " +_variables[p[3]])
+				return False
+		else:
+			print(p[3]+ " no es una variable declarada dentro del programa.")
+			return False
+		if (p[5] in _variables):
+			if (_variables[p[5]] in range (0,8)):
+				_posStart[1] = int(_variables[p[5]])
+			else:
+				print("Variable " + p[5] +" tiene un valor fuera de los límites = " +_variables[p[5]])
+				return False
+		else:
+			print(p[5] + " no es una variable declarada dentro del programa.")
+			return False
+		return True
 def p_llamar(p):
 	'''llamar : CALL ID'''
 	if (addTo(p)):

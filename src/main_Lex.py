@@ -31,9 +31,6 @@ tokens = reservadas + ['NUM', 'ESPECIAL', 'ID', 'COMMENT', 'EOL',
 # Expresiones regulares que definen los tokens pertenecientes al lenguaje.          #
 #####################################################################################
 t_ignore = '\t'
-def t_NUM(t):
-    r'[0-9]+'
-    return t
     
 t_SEMICOLON = r';'                                      # Expresión regular que hace match con el valor: ";"
 t_ASSIGN = r'='                                         # Expresión regular que hace match con el valor: "="
@@ -85,7 +82,13 @@ t_FOR = r'For'                                          # Expresión regular que
 t_TIMES = r'Times'                                      # Expresión regular que hace match con el valor literal: "Times"
 t_FEND = r'Fend'                                        # Expresión regular que hace match con el valor literal: "Fend"
 t_ID = r'[a-z]([a-zA-Z]|(\_|\@|\*)|[0-9]){0,9}'         # Expresión regular que hace match con cualquier identificador o nombre de proceso.
-t_MATHEXPR = r'(t_NUM(\+|-|\*|\\))*t_NUM'               # Expresión regular que hace match con cualquier valor correspondiente a un número o expresión matemática.
+def t_MATHEXPR(t):
+    r'((NUM)(\+|-|\*|\\))*(NUM)'            # Expresión regular que hace match con cualquier valor correspondiente a un número o expresión matemática.
+    return t
+def t_NUM(t):
+    r'[0-9]+'
+    return t
+              
 
 #####################################################################################
 #                             Expresiones ignoradas                                 #
