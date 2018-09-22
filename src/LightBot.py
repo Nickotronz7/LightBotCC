@@ -1,25 +1,26 @@
-from AnalizadorSintactico import *
-import os
-import codecs
-import re
+from AnalizadorSintactico import * 
 
 from globalVar import _MAT as _mat
 from globalVar import printMat
-from globalVar import _VARIABLES as _variables
 from globalVar import _PROC as _proc
 from globalVar import _EXPRESIONES as _expresiones
 
 def execute(_expresiones):
-    global _proc, _variables
+    from globalVar import _VARIABLES as _variables
+    print(_variables)
+    print
     _lineno = 0
     while(_lineno  < len(_expresiones)):
         if(_expresiones[_lineno][0] == "PosStart"):
-            p_pos_inicio([0] + _expresiones[_lineno])
+            if (p_pos_inicio([0] + _expresiones[_lineno])):
+                pass
+            else:
+                return
         elif(len(_expresiones[_lineno]) == 4 and _expresiones[_lineno][0] == "Place"):
             p_colocar1_2([0] + _expresiones[_lineno])
         elif(_expresiones[_lineno][0] == "Place" and _expresiones[_lineno][0] == ";"):
             p_colocar1([0] + _expresiones[_lineno])
-        elif(_expresiones[_lineno][0] =="Pos"):
+        elif(_expresiones[_lineno][0] =="Pos"):  
             p_mover([0] + _expresiones[_lineno])
         elif(_expresiones[_lineno][0] == "Put"):
             p_encender([0] + _expresiones[_lineno])
@@ -68,7 +69,9 @@ def execute(_expresiones):
             while(_expresiones[_lineno + fin][0] != "Fend"):
                 fin +=1
             for k in range(0, int(_expresiones[_lineno][3])):
+                _variables[_expresiones[_lineno][1]] = k
                 execute(_expresiones[:fin + _lineno][_lineno+1:])
+            _variables.pop(_expresiones[_lineno][1])
             _lineno += fin
         elif(len(_expresiones[_lineno]) == 5 and _expresiones[_lineno][2] =="Left"):
             p_cambiar_direccion1([0] + _expresiones[_lineno])
@@ -79,8 +82,7 @@ def execute(_expresiones):
         elif(len(_expresiones[_lineno]) == 5 and _expresiones[_lineno][2] == "Same"):
             p_cambiar_direccion4([0] + _expresiones[_lineno])
         _lineno +=1
-        #print(_lineno)
-
+        print(_variables)
 
 def main(route):
     file = ""
@@ -99,9 +101,19 @@ def main(route):
         _mat += [[]]
         for j in range(0,8):
             _mat[i] += [[8,False]]
+    try:
+        analisisSintantico(file)
+    except:
+        print("Existe un error en el programa cargado")
+        return False
+        
+    from globalVar import _VARIABLES as _variables
+    _variables
 
-    analisisSintantico(file)
-    global _expresiones
+    if (len(_variables) == 0):
+        print("Error semántico: No se ha definido ninguna variable")
+        return False
+    
 
-    execute(_expresiones)
+execute(_expresiones)
     return 1                                                                       # Análisis realizado correctamente
