@@ -115,18 +115,5 @@ def main(route):
         return False
     
 
-    global _expresiones
-    print(_variables)
-    try:
-        execute(_expresiones)
-    except IndexError  as index:
-        print("No se ha encontrado un finalizador de instruccion. Tal como:")
-        print( "Fend, Whend, End-Proc o \";\"")
-        print("Por favor verificar estos elementos")
-        return False
-    printMat()
-    print(_variables)
-    
-    return True                                                                       # Análisis realizado correctamente
-
-main('prueba5.LBcc.txt')
+execute(_expresiones)
+    return 1                                                                       # Análisis realizado correctamente

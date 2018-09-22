@@ -1,6 +1,12 @@
 import socket
 import sys
 
+##################################
+#Clase servidor
+#Conecta con la aplicación y retorna los movimientos
+#del usuario
+##################################
+
 class Server:
     HOST = socket.gethostname()
     PORT = 8888

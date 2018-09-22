@@ -1,3 +1,8 @@
+##################################
+#Valida la jugada y retorna los movimientos
+#que se dibujarán en la matriz física
+##################################
+
 class CheckSolution:
     PLAIN = 0
     LEVEL_1 = 1
@@ -15,17 +20,9 @@ class CheckSolution:
     user_level=0
     solution_i_aux=0
 
-    NUM_LIGHTS=3 #Número de luces por encender
+    NUM_LIGHTS=0 #Número de luces por encender
 
-    maze = [
-    [0,8,8,8,24,2,34,8],
-    [4,0,1,2,1,8,8,8],
-    [8,8,8,8,8,8,8,8],
-    [8,8,8,8,8,8,8,8],
-    [8,8,8,8,8,8,8,8],
-    [8,8,8,8,8,8,8,8],
-    [8,8,8,8,8,8,8,8],
-    [8,8,8,8,8,8,8,8]]
+    maze = []
 
     SIZE = 8
     solution = [[0]*8 for _ in range(8)] #Ignorar, esto se va luego
@@ -35,7 +32,7 @@ class CheckSolution:
         self.user_level=0
         self.solution_i_aux=0
         
-    #Algoritmo pseudo backtracking
+    #Algoritmo backtracking para validar la jugada
     def solvemaze(self, r, c, solution_i, lights_on, watching_at, user_solution):
         #print(r, c)
         #print("Luces encendidas: ", lights_on)
@@ -75,19 +72,19 @@ class CheckSolution:
         if(user_solution[solution_i]==self.WALK):
             if(watching_at=="DOWN"):
                 if((int(str(self.maze[r+1][c])[0])>self.user_level) and (int(str(self.maze[r+1][c])[0])!=4)):
-                    return False;
+                    return user_solution[0:self.solution_i_aux];
                 self.solvemaze(r+1, c, solution_i+1, lights_on, "DOWN", user_solution)
             if(watching_at=="RIGHT"):
                 if((int(str(self.maze[r][c+1])[0])>self.user_level) and (int(str(self.maze[r][c+1])[0])!=4)):
-                    return False;
+                    return user_solution[0:self.solution_i_aux];
                 self.solvemaze(r, c+1, solution_i+1, lights_on, "RIGHT", user_solution)
             if(watching_at=="LEFT"):
                 if((int(str(self.maze[r][c-1])[0])>self.user_level) and (int(str(self.maze[r][c-1])[0])!=4)):
-                    return False;
+                    return user_solution[0:self.solution_i_aux];
                 self.solvemaze(r, c-1, solution_i+1, lights_on, "LEFT", user_solution)
             if(watching_at=="TOP"):
                 if((int(str(self.maze[r-1][c])[0])>self.user_level) and (int(str(self.maze[r-1][c])[0])!=4)):
-                    return False;
+                    return user_solution[0:self.solution_i_aux];
                 self.solvemaze(r-1, c, solution_i+1, lights_on, "TOP", user_solution)
 
         if(user_solution[solution_i]==self.RIGHT):
@@ -111,24 +108,27 @@ class CheckSolution:
 
         if(user_solution[solution_i]==self.JUMP):
             if(watching_at=="DOWN"):
+                if((int(str(self.maze[r+1][c])[0])-self.user_level)>1):
+                    return user_solution[0:self.solution_i_aux];
                 self.solvemaze(r+1, c, solution_i+1, lights_on, "DOWN", user_solution)
             if(watching_at=="RIGHT"):
+                if((int(str(self.maze[r][c+1])[0])-self.user_level)>1):
+                    return user_solution[0:self.solution_i_aux];
                 self.solvemaze(r, c+1, solution_i+1, lights_on, "RIGHT", user_solution)
             if(watching_at=="LEFT"):
+                if((int(str(self.maze[r][c-1])[0])-self.user_level)>1):
+                    return user_solution[0:self.solution_i_aux];
                 self.solvemaze(r, c-1, solution_i+1, lights_on, "LEFT", user_solution)
             if(watching_at=="TOP"):
+                if((int(str(self.maze[r-1][c])[0])-self.user_level)>1):
+                    return user_solution[0:self.solution_i_aux];
                 self.solvemaze(r-1, c, solution_i+1, lights_on, "TOP", user_solution)
         
         return user_solution[0:self.solution_i_aux]
     
-user_solution=[0,4,1,0,3,3,0,2,3,4,1,0,3,4]
-test=CheckSolution()
-#print(test.solvemaze(0,0,0,0,"DOWN",[0,4,1,0,3,0]))
-#print(test.solvemaze(0,0,0,0,"DOWN",[0,4,4,4,3,0]))
-#print(test.solvemaze(0,0,0,0,"DOWN",[0,4,4,4,3,0]))
-#test.reset_parameters()
-#print(test.solvemaze(0,0,0,0,"DOWN",user_solution))
-#test.reset_parameters()
+#user_solution=[3,1,0,4,1,0,3,0]
+#test=CheckSolution()
+
 #print(test.solvemaze(0,0,0,0,"DOWN",user_solution))
 
 #for var in test.solution:
