@@ -101,8 +101,12 @@ def main(route):
         _mat += [[]]
         for j in range(0,8):
             _mat[i] += [[8,False]]
-
-    analisisSintantico(file)
+    try:
+        analisisSintantico(file)
+    except:
+        print("Existe un error en el programa cargado")
+        return False
+        
     from globalVar import _VARIABLES as _variables
     _variables
 
@@ -113,9 +117,16 @@ def main(route):
 
     global _expresiones
     print(_variables)
-    execute(_expresiones)
+    try:
+        execute(_expresiones)
+    except IndexError  as index:
+        print("No se ha encontrado un finalizador de instruccion. Tal como:")
+        print( "Fend, Whend, End-Proc o \";\"")
+        print("Por favor verificar estos elementos")
+        return False
     printMat()
     print(_variables)
-    return 1                                                                       # Análisis realizado correctamente
+    
+    return True                                                                       # Análisis realizado correctamente
 
 main('prueba5.LBcc.txt')

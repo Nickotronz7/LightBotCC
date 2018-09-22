@@ -314,7 +314,7 @@ def p_mover(p):
 		global _actualPos, _variables
 		if (p[3] in _variables):
 			if (_variables[p[3]] in range (0,8)):
-				_actualPos[0] = int(_variables[p[3]])
+				_actualPos[1] = int(_variables[p[3]])
 			else:
 				print("Variable " + p[3] +" tiene un valor fuera de los límites = " +_variables[p[3]])
 				return False
@@ -323,7 +323,7 @@ def p_mover(p):
 			return False
 		if (p[5] in _variables):
 			if (_variables[p[5]] in range (0,8)):
-				_actualPos[1] = int(_variables[p[5]])
+				_actualPos[0] = int(_variables[p[5]])
 			else:
 				print("Variable " + p[5] +" tiene un valor fuera de los límites = " +_variables[p[5]])
 				return False
@@ -338,7 +338,7 @@ def p_pos_inicio(p):
 		global _posStart, _variables
 		if (p[3] in _variables):
 			if (_variables[p[3]] in range (0,8)):
-				_posStart[0] = int(_variables[p[3]])
+				_posStart[1] = int(_variables[p[3]])
 			else:
 				print("Variable " + p[3] +" tiene un valor fuera de los límites = " +_variables[p[3]])
 				return False
@@ -347,7 +347,7 @@ def p_pos_inicio(p):
 			return False
 		if (p[5] in _variables):
 			if (_variables[p[5]] in range (0,8)):
-				_posStart[1] = int(_variables[p[5]])
+				_posStart[0] = int(_variables[p[5]])
 			else:
 				print("Variable " + p[5] +" tiene un valor fuera de los límites = " +_variables[p[5]])
 				return False
