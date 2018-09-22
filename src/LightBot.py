@@ -104,7 +104,4 @@ def main(route):
     global _expresiones
 
     execute(_expresiones)
-    #printMat()
     return 1                                                                       # Análisis realizado correctamente
-
-main('prueba5.LBcc.txt')

@@ -9,6 +9,11 @@ from tkinter import Label
 from tkinter import END
 from tkinter import Tk
 
+import sys
+import os
+from globalVar import printMat
+from LightBot import main as interprete
+
 global file_name
 file_name = ''
 
@@ -150,7 +155,8 @@ class Window(Frame):
     def run_file(self):
         self.save_file
         global file_name
-        print(file_name)
+        interprete(file_name)
+        printMat()
 
 
 
